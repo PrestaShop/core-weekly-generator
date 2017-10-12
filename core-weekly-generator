@@ -6,37 +6,44 @@ function includeIfExists($file)
         return include $file;
     }
 }
-
 if ((!$loader = includeIfExists(__DIR__.'/vendor/autoload.php')) && (!$loader = includeIfExists(__DIR__.'/../../autoload.php'))) {
     die('You must set up the project dependencies, run the following commands:'.PHP_EOL.
         'curl -sS https://getcomposer.org/installer | php'.PHP_EOL.
         'php composer.phar install'.PHP_EOL);
 }
-
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Filesystem;
-
 use GuzzleHttp\Client;
-
 const GITHUB_CONTRIBUTORS_POINT = 'https://api.github.com/repos/PrestaShop/PrestaShop/pulls?base={branch}&state=closed';
 const REGEX = '/=([[:digit:]]+)>; rel="last"/';
 const CORETEAM_MEMBERS = [
-  'aleeks',
-  'antoin-m',
-  'julienbourdeau',
-  'maximebiloe',
-  'mickaelandrieu',
-  'nihco2',
-  'Quetzacoalt91',
-  'Shudrum',
-  'thierrymarianne',
-  'fatmaBouchekoua',
+  'AlexEven',           // Alexandra E.
+  'AntoineMille',       // Antoine M.
+  'LittleBigDev',       // Bastien B.
+  'Quetzacoalt91',      // Thomas N.
+  'Shudrum',            // Julien M.
+  'aleeks',             // Alex S.
+  'antoin-m',           // Michel A.
+  'azouz-jribi',        // Azouz Jribi (Sifast)
+  'eternoendless',      // Pablo B.
+  'fatmaBouchekoua',    // Fatma B. (Sifast)
+  'hibatallahAouadni',  // Hibatallah A. (Sifast)
+  'jocel1',             // Jocelyn F.
+  'julienbourdeau',     // Julien B.
+  'kompilorb',          // Sébastien S.
+  'maximebiloe',        // Maxime B.
+  'mickaelandrieu',     // Mickael A.
+  'nihco2',             // Nicolas M.
+  'thierrymarianne',    // Thierry M.
+  'tomlev',             // Thomas L.
+  'toutantic',          // Aurélien
+  'vincentbz',          // Vincent B.
+  'xBorderie',          // Xavier B.
 ];
-
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
  * A simple CLI tool to generate PrestaShop Core Weekly.
@@ -51,7 +58,6 @@ const CORETEAM_MEMBERS = [
       ->addArgument('branches', InputArgument::REQUIRED|InputArgument::IS_ARRAY, 'The filtered git branches')
       ->setCode(function(InputInterface $input, OutputInterface $output) {
         $io = new SymfonyStyle($input, $output);
-
         $user = $input->getArgument('user');
         $password = $input->getArgument('password');
         $from = new DateTime($input->getArgument('from'));
@@ -60,19 +66,15 @@ const CORETEAM_MEMBERS = [
         $allPullRequests = [];
         $authHeaders = ['auth' => [$user, $password]];
         $client = new Client(['timeout'  => 4.0,]);
-
         foreach ($branches as $branch) {
           $requestUri = str_replace('{branch}', $branch, GITHUB_CONTRIBUTORS_POINT);
-
           $response = $client->get($requestUri, $authHeaders);
-
           if ('application/json; charset=utf-8' === $response->getHeader('Content-Type')[0]) {
               if($response->hasHeader('Link')){
                   $headerValue = $response->getHeader('Link')[0];
                   preg_match(REGEX, $headerValue, $matches);
                   $nbPages = min($matches[1], 5);
                   $allPullRequestsForBranch = [];
-
                   for ($i = 1; $i <= $nbPages; $i++) {
                       $pullRequests = [];
                       $response = $client->get($requestUri . '&page=' . $i, $authHeaders);
@@ -82,11 +84,9 @@ const CORETEAM_MEMBERS = [
                       }
                       $allPullRequestsForBranch = array_merge($allPullRequestsForBranch, $pullRequests);
                   }
-
                   $allPullRequests[$branch] = $allPullRequestsForBranch;
               }
             }
-
           }
           
           /* WRITE FILE */
@@ -101,9 +101,9 @@ const CORETEAM_MEMBERS = [
                   $author = $pullRequest['login'];
                   
                   if (in_array($author, CORETEAM_MEMBERS)) {
-                    $textFile .= ", by @" . $author . "." . PHP_EOL;
+                    $textFile .= ", by @" . strtolower($author) . "." . PHP_EOL;
                   }else {
-                    $textFile .= ". Thank you @" . $author . "!" . PHP_EOL;
+                    $textFile .= ". Thank you @" . strtolower($author) . "!" . PHP_EOL;
                   }
                 }
               }
@@ -112,15 +112,14 @@ const CORETEAM_MEMBERS = [
           
           (new Filesystem())->dumpFile('weekly-report.md', $textFile);
           $io->success('File `weekly-report.md` generated without any errors.');
+          echo $textFile;
       })
   ->getApplication()
   ->setDefaultCommand('core-weekly-generator', true)
 ->run();
-
 function isDateBetweenDates(DateTime $date, DateTime $startDate, DateTime $endDate) {
     return $date > $startDate && $date < $endDate;
 }
-
 function reducePullRequest($pullRequest)
 {
     return [
