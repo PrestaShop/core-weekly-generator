@@ -21,29 +21,21 @@ use GuzzleHttp\Client;
 const GITHUB_CONTRIBUTORS_POINT = 'https://api.github.com/repos/PrestaShop/PrestaShop/pulls?base={branch}&state=closed';
 const REGEX = '/=([[:digit:]]+)>; rel="last"/';
 const CORETEAM_MEMBERS = [
-  'AlexEven',           // Alexandra E.
-  'AntoineMille',       // Antoine M.
   'LittleBigDev',       // Bastien B.
   'Quetzacoalt91',      // Thomas N.
-  'Shudrum',            // Julien M.
-  'aleeks',             // Alex S.
-  'antoin-m',           // Michel A.
   'azouz-jribi',        // Azouz Jribi (Sifast)
   'eternoendless',      // Pablo B.
   'fatmaBouchekoua',    // Fatma B. (Sifast)
-  'hibatallahAouadni',  // Hibatallah A. (Sifast)
   'jocel1',             // Jocelyn F.
-  'julienbourdeau',     // Julien B.
-  'kompilorb',          // Sébastien S.
-  'maximebiloe',        // Maxime B.
   'mickaelandrieu',     // Mickael A.
-  'nihco2',             // Nicolas M.
   'rGaillard',          // Rémi G.
-  'thierrymarianne',    // Thierry M.
   'tomlev',             // Thomas L.
   'toutantic',          // Aurélien
-  'vincentbz',          // Vincent B.
-  'xBorderie',          // Xavier B.
+  'alegout',            // Alban
+  'slorenzini',         //Sarah L.
+  'LouiseBonnard',      // Louise B.
+  'ttoine',             // Antoine T.
+  'colinegin',          // Coline G.
 ];
 /**
  * @author Mickaël Andrieu <andrieu.travail@gmail.com>
