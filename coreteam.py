@@ -57,4 +57,15 @@ PROJECTS = {
     'prestashop-ui-kit' : 'Prestashop UI Kit',
 }
 
+CATEGORIES = {
+    'CO' : 'Core',
+    'BO' : 'Back office',
+    'FO' : 'Front office',
+    'IN' : 'Installer',
+    'WS' : 'Web services',
+    'TE' : 'Tests',
+    'ME' : 'Merge',
+    'Misc' : 'Misc',
+} 
+
 

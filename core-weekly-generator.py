@@ -3,6 +3,9 @@
 from __future__ import unicode_literals
 from coreteam import CORE_TEAM
 from coreteam import PROJECTS
+from coreteam import CATEGORIES
+from collections import OrderedDict
+from pprint import pprint
 
 import os
 import sys
@@ -10,6 +13,7 @@ import json
 import time
 import re
 import ssl
+
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -372,6 +376,26 @@ Happy contributin' everyone!
         return url
 
     ##
+    # Sort core items by branch following given branch order
+    #
+    # thanks https://stackoverflow.com/questions/12031482/custom-sorting-python-dictionary
+    #
+    def custom_sort(self, dict1 , key_order):
+
+        only_useful_keys = []
+        for key in key_order:
+            if key in dict1.keys():
+                only_useful_keys.append(key)
+
+        items = [dict1[k] if k in dict1.keys() else 0 for k in only_useful_keys] 
+        sorted_dict = OrderedDict()
+
+        for i in range(len(only_useful_keys)):
+            sorted_dict[only_useful_keys[i]] = items[i]
+
+        return sorted_dict
+
+    ##
     # Build merged pull requests
     #
     # :param dict result: Pull requests
@@ -381,13 +405,28 @@ Happy contributin' everyone!
 
         sorted_results = self.get_repositories(result['items'])
         core_items = sorted_results.get('PrestaShop')
-        sorted_core_items = self.sort_core_repositories(core_items)
+        grouped_core_items = self.sort_core_repositories(core_items)
+
+        # @todo: remove hardcoded branches
+        branch_order = ['develop', '1.7.6.x', '1.7.5.x', '1.7.4.x']
+        sorted_core_items = self.custom_sort(grouped_core_items, branch_order)
+
+        category_order = ['CO', 'BO', 'FO', 'IN', 'WS', 'TE', 'ME', 'Misc']
 
         for branch, category_items in sorted_core_items.items():
-            content += "\n\n## Code changes in the "+branch+" branch (for vXXXX)"
+            content += "\n\n## Code changes in the '"+branch+"' branch (for vXXXX)"
 
-            for category, items in category_items.items():
-                content += "\n\n### " + category
+            sorted_category_items = self.custom_sort(category_items, category_order)
+
+            for category, items in sorted_category_items.items():
+
+                if category in CATEGORIES.keys():
+                # map category ID with a proper name
+                    category_name = CATEGORIES[category]
+                else:
+                    category_name = category
+
+                content += "\n\n### " + category_name
                 for item in items:
                     line = '* [#{pr_number}]({pr_url}): {pr_title}{thanks}'.format(
                         pr_number=item['number'],
