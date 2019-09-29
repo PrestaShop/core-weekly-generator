@@ -40,8 +40,21 @@ CORE_TEAM = (
 
 )
 
+##
+# List of PrestaShop project repositories
+#
+
 PROJECTS = {
-    ''
+    'prestashop-specs' : 'PrestaShop Specifications',
+    'docs' : 'Changes in developer documentation',
+    'TranslationToolsBundle' : 'TranslationTools Bundle',
+    'QANightlyResults' : 'QA nightly results',
+    'php-coding-standards' : 'PHP Coding Standards',
+    'ps_facetedsearch' : 'Faceted search module',
+    'gamification' : 'Gamification module',
+    'autoupgrade' : 'Auto Upgrade module',
+    'classic-rocket' : 'Classic-rocket theme',
+    'prestashop-ui-kit' : 'Prestashop UI Kit',
 }
 
 

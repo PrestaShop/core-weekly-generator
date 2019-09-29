@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from coreteam import CORE_TEAM
+from coreteam import PROJECTS
 
 import os
 import sys
@@ -180,7 +181,7 @@ layout: post
 title:  "PrestaShop Core Weekly - Week XXXX of 2019"
 subtitle: "An inside look at the PrestaShop codebase"
 date:   XXXX
-authors: [ MathieuFerment ]
+authors: [ PrestaShop ]
 image: /assets/images/2017/04/core_weekly_banner.jpg
 icon: icon-calendar
 tags:
@@ -188,11 +189,13 @@ tags:
 ---
 
 This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from XXXX to XXXX.
+
 ![Core Weekly banner](/assets/images/2018/12/banner-core-weekly.jpg)
 
 ## General messages
 
 [XXXX]
+
 
 ## A quick update about PrestaShop\'s GitHub issues and pull requests:
 '''
@@ -340,6 +343,8 @@ Happy contributin' everyone!
     #
     # :param str body: Body string
     #
+    # @todo: improve to remove hardcoded branches
+    #
     def extract_branch(self, body):
         if (body.find("1.7.6.x\r\n") != -1):
             return "1.7.6.x"
@@ -358,7 +363,11 @@ Happy contributin' everyone!
     def extract_repository(self, url):
         m = re.search('github.com/PrestaShop/(.+?)/', url)
         if m:
-            return m.group(1)
+            if m.group(1) in PROJECTS.keys():
+                # map repository with a project name
+                return PROJECTS[m.group(1)]
+            else:
+                return m.group(1)
 
         return url
 
@@ -409,6 +418,7 @@ Happy contributin' everyone!
 
     def build_contributors_list(self, result):
         head = '''
+
 <hr />
 
 '''
