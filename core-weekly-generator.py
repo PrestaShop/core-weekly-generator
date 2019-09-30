@@ -370,8 +370,8 @@ Happy contributin' everyone!
             if m.group(1) in PROJECTS.keys():
                 # map repository with a project name
                 return PROJECTS[m.group(1)]
-            else:
-                return m.group(1)
+            
+            return m.group(1)
 
         return url
 
