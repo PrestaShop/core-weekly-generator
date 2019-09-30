@@ -1,24 +1,17 @@
 # Core Weekly report generator
 
-Core weekly generator is a micro CLI application that is able to generate a list of merged PR
+Core weekly generator is a micro Python 3 (should be compatible with Python 2 too) CLI application that is able to generate a list of merged PR
 for a selected list of branches in an interval of dates.
  
- 
-## Installation
- 
-The authentication is a basic login/password for GitHub.
+## Usage
  
 ```bash
- $ composer install prestashop/core-weekly-report
- 
- $ ./vendor/bin/core-weekly-generator <login> <password> <from> <to> <list> <of> <branches> <...>
-```
- 
-For instance:
+ $ python ./core-weekly-generator.py 2019-08-05..2019-08-11 > my-core-weekly.md
+ ```
 
-```bash
-./core-weekly-generator mickaelandrieu XXXXXXXXX 31-10-2016 9-12-2016 1.7.0.x develop 1.6.1.x
-```
+ You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder categories, repositories, put the full category names instead of TE or CO) before publishing the article.
 
-A file named ``weekly-report.md`` will be generated, you can manipulate it using any programming language.
+ ## Next features to add
 
+- sort Core categories (first: CO then BO then FO then ...)
+- sort Core branches (first: develop then 1.x.y.z)
