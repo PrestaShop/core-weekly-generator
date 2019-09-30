@@ -9,9 +9,4 @@ for a selected list of branches in an interval of dates.
  $ python ./core-weekly-generator.py 2019-08-05..2019-08-11 > my-core-weekly.md
  ```
 
- You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder categories, repositories, put the full category names instead of TE or CO) before publishing the article.
-
- ## Next features to add
-
-- sort Core categories (first: CO then BO then FO then ...)
-- sort Core branches (first: develop then 1.x.y.z)
+You need to do a bit of polishing (fill in the `[XXXX]` sections, fill in the week number and the date, rework some PR titles, put a project name for some repositories) before publishing the article.
