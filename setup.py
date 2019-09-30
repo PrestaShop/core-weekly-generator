@@ -12,7 +12,7 @@ setup(
     author_email='contact@prestashop.com',
     url='https://github.com/PrestaShop/core-weekly-generator',
     license='GPLv3',
-    scripts=['core-weekly'],
+    scripts=['core-weekly.py'],
     packages=['core_weekly'],
     install_requires=[
         'argparse==1.4.0',
