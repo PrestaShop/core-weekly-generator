@@ -179,8 +179,7 @@ class Template():
     # Default headers
     #
     def headers(self):
-        return '''
----
+        return '''---
 layout: post
 title:  "PrestaShop Core Weekly - Week XXXX of 2019"
 subtitle: "An inside look at the PrestaShop codebase"
