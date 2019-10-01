@@ -147,13 +147,19 @@ Happy contributin' everyone!
     #
     def thanks(self, user):
         if user['login'] in CORE_TEAM:
-            message = ', by [@{author_name}]({author_url})'
+            message = ', by '
         else:
-            message = '. Thank you [@{author_name}]({author_url})'
+            message = '. Thank you '
 
-        return message.format(
+        return message + self.author_line(
             author_name=user['login'],
             author_url=user['html_url'],
+        )
+
+    def author_line(self, author_name, author_url, **kwargs):
+        return '[@{author_name}]({author_url})'.format(
+            author_name=author_name,
+            author_url=author_url,
         )
 
     ##
@@ -288,9 +294,7 @@ Happy contributin' everyone!
         head = "\n\n<hr />\n\n"
         thanks = 'Thank you to the contributors whose pull requests were merged since the last Core Weekly Report: '
 
-        contributors = self.get_authors(result['items'])
-
-        return head + thanks + '@' + ', @'.join(contributors) + "!\n"
+        return head + thanks + '' + self.get_authors(result['items']) + "!\n"
 
     ##
     # Get Repositories
@@ -318,10 +322,14 @@ Happy contributin' everyone!
     def get_authors(self, items):
         authors = []
         for item in items:
-            author = self.extract_repository(item['user']['login'])
-            authors.append(author)
+            authors.append(
+                self.author_line(
+                    author_name=item['user']['login'],
+                    author_url=item['user']['html_url']
+                )
+            )
 
-        return list(dict.fromkeys(authors))
+        return ', '.join(authors)
 
     ##
     # Get PrestaShop repositories
