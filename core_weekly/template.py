@@ -162,24 +162,24 @@ Happy contributin' everyone!
             author_url=author_url,
         )
 
+    def parse_body(self, body, search_type, regex='.+'):
+        return re.search(
+            r'(?:\|\s+{}\?\s+\|\s+)({})\s+'.format(
+                search_type,
+                regex
+            ),
+            body
+        )
+
     ##
     # Extract core category
     #
     # :param str body: Body string
     #
     def extract_core_category(self, body):
-        if (body.find("| WS\r\n") != -1):
-            return "WS"
-        if (body.find("| FO\r\n") != -1):
-            return "FO"
-        if (body.find("| BO\r\n") != -1):
-            return "BO"
-        if (body.find("| IN\r\n") != -1):
-            return "IN"
-        if (body.find("| TE\r\n") != -1):
-            return "TE"
-        if (body.find("| CO\r\n") != -1):
-            return "CO"
+        matches = self.parse_body(body, 'Category')
+        if matches.group(1):
+            return matches.group(1)
 
         return 'Misc'
 
@@ -188,15 +188,10 @@ Happy contributin' everyone!
     #
     # :param str body: Body string
     #
-    # @todo: improve to remove hardcoded branches
-    #
     def extract_branch(self, body):
-        if (body.find("1.7.6.x\r\n") != -1):
-            return "1.7.6.x"
-        if (body.find("1.7.5.x\r\n") != -1):
-            return "1.7.5.x"
-        if (body.find("develop\r\n") != -1):
-            return "develop"
+        matches = self.parse_body(body, 'Branch')
+        if matches.group(1):
+            return matches.group(1)
 
         return 'unknown branch'
 
