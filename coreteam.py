@@ -1,7 +1,6 @@
 ##
 # List of PrestaShop employees or subcontractors
 #
-
 CORE_TEAM = (
     'PierreRambaud',      # Pierre R.
     'LittleBigDev',       # Bastien B.
@@ -43,29 +42,29 @@ CORE_TEAM = (
 ##
 # List of PrestaShop project repositories
 #
-
 PROJECTS = {
-    'prestashop-specs' : 'PrestaShop Specifications',
-    'docs' : 'Changes in developer documentation',
-    'TranslationToolsBundle' : 'TranslationTools Bundle',
-    'QANightlyResults' : 'QA nightly results',
-    'php-coding-standards' : 'PHP Coding Standards',
-    'ps_facetedsearch' : 'Faceted search module',
-    'gamification' : 'Gamification module',
-    'autoupgrade' : 'Auto Upgrade module',
-    'classic-rocket' : 'Classic-rocket theme',
-    'prestashop-ui-kit' : 'Prestashop UI Kit',
+    'prestashop-specs': 'PrestaShop Specifications',
+    'docs': 'Changes in developer documentation',
+    'TranslationToolsBundle': 'TranslationTools Bundle',
+    'QANightlyResults': 'QA nightly results',
+    'php-coding-standards': 'PHP Coding Standards',
+    'ps_facetedsearch': 'Faceted search module',
+    'gamification': 'Gamification module',
+    'autoupgrade': 'Auto Upgrade module',
+    'classic-rocket': 'Classic-rocket theme',
+    'prestashop-ui-kit': 'Prestashop UI Kit',
 }
 
+##
+# List of PrestaShop Categories
+#
 CATEGORIES = {
-    'CO' : 'Core',
-    'BO' : 'Back office',
-    'FO' : 'Front office',
-    'IN' : 'Installer',
-    'WS' : 'Web services',
-    'TE' : 'Tests',
-    'ME' : 'Merge',
-    'Misc' : 'Misc',
-} 
-
-
+    'CO': 'Core',
+    'BO': 'Back office',
+    'FO': 'Front office',
+    'IN': 'Installer',
+    'WS': 'Web services',
+    'TE': 'Tests',
+    'ME': 'Merge',
+    'Misc': 'Misc',
+}

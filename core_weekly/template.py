@@ -1,174 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from coreteam import CORE_TEAM
 from coreteam import PROJECTS
 from coreteam import CATEGORIES
 from collections import OrderedDict
-from pprint import pprint
-
-import os
-import sys
-import json
-import time
 import re
-import ssl
-
-
-ssl._create_default_https_context = ssl._create_unverified_context
-
-# Just in case it's not python 2
-try:
-    import urllib.request as urlrequest
-except ImportError:
-    import urllib as urlrequest
-
-
-##
-# Github api
-#
-class GitHub():
-    def __init__(self):
-        self.sleep_time = 2
-        self.url = 'https://api.github.com/search/issues?per_page=100'
-
-    ##
-    # Build github query
-    #
-    # :param query String
-    #
-    def build_query(self, query):
-        return '&q=org:PrestaShop+is:public+-repo:prestashop/prestashop.github.io+' + query
-
-    ##
-    # Generate github request and return json content
-    #
-    # :param str query: Represents a GitHub query
-    # :param bool is_issue: Is issue or pull request
-    #
-    def get_json(self, query, is_issue=True):
-        query_type = ('is:issue' if is_issue else 'is:pr')
-        
-        # debug only
-        #print(
-        #    'Processing request for query: {query_type}+{query}'.format(
-        #        query=query,
-        #        query_type=query_type
-        #    )
-        #)
-        
-        filename = '{query}-{query_type}'.format(
-            query=query,
-            query_type=query_type
-        )
-
-        if os.path.exists('./' + filename):
-            with open(filename, 'r') as f:
-                data = f.read()
-        else:
-            data = urlrequest.urlopen(
-                self.url +
-                self.build_query(query) +
-                '+' +
-                query_type
-            ).read().decode('utf-8')
-
-            with open(filename, 'w') as f:
-                f.write(data)
-            time.sleep(self.sleep_time)
-
-        return json.loads(data)
-
-
-class CoreWeekly():
-    def __init__(self, date_range):
-        self.github = GitHub()
-        self.template = Template()
-        self.date_range = date_range
-
-    ##
-    # Get opened issues
-    #
-    def get_opened_issues(self):
-        return self.github.get_json(
-            'created:{date_range}'.format(date_range=self.date_range)
-        )
-
-    ##
-    # Get closed issues
-    #
-    def get_closed_issues(self):
-        return self.github.get_json(
-            'closed:{date_range}'.format(date_range=self.date_range)
-        )
-
-    ##
-    # Get fixed issues
-    #
-    def get_fixed_issues(self):
-        return self.github.get_json(
-            'label:fixed+closed:{date_range}'.format(date_range=self.date_range)
-        )
-
-    ##
-    # Get opened pull requests
-    #
-    def get_opened_pr(self):
-        return self.github.get_json(
-            'created:{date_range}'.format(date_range=self.date_range),
-            False
-        )
-
-    ##
-    # Get closed pull requests
-    #
-    def get_closed_pr(self):
-        return self.github.get_json(
-            'closed:{date_range}'.format(date_range=self.date_range),
-            False
-        )
-
-    ##
-    # Get merged pull request
-    #
-    def get_merged_pr(self):
-        return self.github.get_json(
-            'merged:{date_range}'.format(date_range=self.date_range),
-            False
-        )
-
-    ##
-    # Generate Core weekly markdown content
-    #
-    def generate(self):
-        opened_issues = self.get_opened_issues()
-        closed_issues = self.get_closed_issues()
-        fixed_issues = self.get_fixed_issues()
-        opened_pr = self.get_opened_pr()
-        closed_pr = self.get_closed_pr()
-        merged_pr = self.get_merged_pr()
-
-        content = self.template.headers()
-        
-        # debug only
-        #content += self.template.opened_issues(opened_issues)
-        #content += self.template.closed_issues(closed_issues)
-        #content += self.template.fixed_issues(fixed_issues)
-        #content += ''
-        #content += self.template.opened_pr(opened_pr)
-        #content += self.template.closed_pr(closed_pr)
-        #content += self.template.merged_pr(merged_pr)
-        #content += ''
-        #content += "\n\n"
-        
-        content += self.template.issues_links(opened_issues, closed_issues, fixed_issues, self.date_range)
-        content += self.template.pr_links(opened_issues, closed_issues, fixed_issues, self.date_range)
-        content += self.template.build_merged_pull_requests(merged_pr)
-
-        content += self.template.build_contributors_list(merged_pr)
-        content += self.template.footers()
-
-        return content
 
 
 class Template():
@@ -311,13 +147,28 @@ Happy contributin' everyone!
     #
     def thanks(self, user):
         if user['login'] in CORE_TEAM:
-            message = ', by [@{author_name}]({author_url})'
+            message = ', by '
         else:
-            message = '. Thank you [@{author_name}]({author_url})'
+            message = '. Thank you '
 
-        return message.format(
+        return message + self.author_line(
             author_name=user['login'],
             author_url=user['html_url'],
+        )
+
+    def author_line(self, author_name, author_url, **kwargs):
+        return '[@{author_name}]({author_url})'.format(
+            author_name=author_name,
+            author_url=author_url,
+        )
+
+    def parse_body(self, body, search_type, regex='.+'):
+        return re.search(
+            r'(?:\|\s+{}\?\s+\|\s+)({})\s+'.format(
+                search_type,
+                regex
+            ),
+            body
         )
 
     ##
@@ -326,18 +177,9 @@ Happy contributin' everyone!
     # :param str body: Body string
     #
     def extract_core_category(self, body):
-        if (body.find("| WS\r\n") != -1):
-            return "WS"
-        if (body.find("| FO\r\n") != -1):
-            return "FO"
-        if (body.find("| BO\r\n") != -1):
-            return "BO"
-        if (body.find("| IN\r\n") != -1):
-            return "IN"
-        if (body.find("| TE\r\n") != -1):
-            return "TE"
-        if (body.find("| CO\r\n") != -1):
-            return "CO"
+        matches = self.parse_body(body, 'Category')
+        if matches.group(1):
+            return matches.group(1)
 
         return 'Misc'
 
@@ -346,15 +188,10 @@ Happy contributin' everyone!
     #
     # :param str body: Body string
     #
-    # @todo: improve to remove hardcoded branches
-    #
     def extract_branch(self, body):
-        if (body.find("1.7.6.x\r\n") != -1):
-            return "1.7.6.x"
-        if (body.find("1.7.5.x\r\n") != -1):
-            return "1.7.5.x"
-        if (body.find("develop\r\n") != -1):
-            return "develop"
+        matches = self.parse_body(body, 'Branch')
+        if matches.group(1):
+            return matches.group(1)
 
         return 'unknown branch'
 
@@ -369,7 +206,7 @@ Happy contributin' everyone!
             if m.group(1) in PROJECTS.keys():
                 # map repository with a project name
                 return PROJECTS[m.group(1)]
-            
+
             return m.group(1)
 
         return url
@@ -379,14 +216,13 @@ Happy contributin' everyone!
     #
     # thanks https://stackoverflow.com/questions/12031482/custom-sorting-python-dictionary
     #
-    def custom_sort(self, dict1 , key_order):
-
+    def custom_sort(self, dict1, key_order):
         only_useful_keys = []
         for key in key_order:
             if key in dict1.keys():
                 only_useful_keys.append(key)
 
-        items = [dict1[k] if k in dict1.keys() else 0 for k in only_useful_keys] 
+        items = [dict1[k] if k in dict1.keys() else 0 for k in only_useful_keys]
         sorted_dict = OrderedDict()
 
         for i in range(len(only_useful_keys)):
@@ -413,17 +249,12 @@ Happy contributin' everyone!
         category_order = ['CO', 'BO', 'FO', 'IN', 'WS', 'TE', 'ME', 'Misc']
 
         for branch, category_items in sorted_core_items.items():
-            content += "\n\n## Code changes in the '"+branch+"' branch (for vXXXX)"
+            content += "\n\n## Code changes in the '" + branch + "' branch (for vXXXX)"
 
             sorted_category_items = self.custom_sort(category_items, category_order)
 
             for category, items in sorted_category_items.items():
-
-                if category in CATEGORIES.keys():
-                # map category ID with a proper name
-                    category_name = CATEGORIES[category]
-                else:
-                    category_name = category
+                category_name = CATEGORIES[category] if category in CATEGORIES.keys() else category
 
                 content += "\n\n### " + category_name
                 for item in items:
@@ -438,7 +269,7 @@ Happy contributin' everyone!
 
         del sorted_results['PrestaShop']
 
-        content +="\n\n" +'## Code changes in modules, themes & tools'
+        content += "\n\n## Code changes in modules, themes & tools"
 
         for repository, items in sorted_results.items():
             content += "\n\n### " + repository
@@ -455,16 +286,10 @@ Happy contributin' everyone!
         return content
 
     def build_contributors_list(self, result):
-        head = '''
-
-<hr />
-
-'''
+        head = "\n\n<hr />\n\n"
         thanks = 'Thank you to the contributors whose pull requests were merged since the last Core Weekly Report: '
 
-        contributors = self.get_authors(result['items'])
-
-        return head + thanks + '@' + ', @'.join(contributors) + "!\n"
+        return head + thanks + '' + self.get_authors(result['items']) + "!\n"
 
     ##
     # Get Repositories
@@ -492,10 +317,14 @@ Happy contributin' everyone!
     def get_authors(self, items):
         authors = []
         for item in items:
-            author = self.extract_repository(item['user']['login'])
-            authors.append(author)
+            authors.append(
+                self.author_line(
+                    author_name=item['user']['login'],
+                    author_url=item['user']['html_url']
+                )
+            )
 
-        return list(dict.fromkeys(authors))
+        return ', '.join(authors)
 
     ##
     # Get PrestaShop repositories
@@ -517,11 +346,3 @@ Happy contributin' everyone!
             sorted_core_items[branch][category].append(item)
 
         return sorted_core_items
-
-
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        raise ValueError('Missing parameters.')
-
-    core_weekly = CoreWeekly(sys.argv[1])
-    print(core_weekly.generate())

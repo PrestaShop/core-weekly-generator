@@ -1,2 +1,4 @@
 weekly-report.md
 __pycache__
+cache/*
+!cache/.gitkeep
