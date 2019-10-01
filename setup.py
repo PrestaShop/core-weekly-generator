@@ -20,7 +20,7 @@ setup(
     ],
     tests_require=[
         'coverage',
-        'pep8',
+        'pycodestyle',
         'flake8',
         'nose',
         'mock'

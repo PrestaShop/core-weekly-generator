@@ -248,7 +248,7 @@ Happy contributin' everyone!
         category_order = ['CO', 'BO', 'FO', 'IN', 'WS', 'TE', 'ME', 'Misc']
 
         for branch, category_items in sorted_core_items.items():
-            content += "\n\n## Code changes in the '"+branch+"' branch (for vXXXX)"
+            content += "\n\n## Code changes in the '" + branch + "' branch (for vXXXX)"
 
             sorted_category_items = self.custom_sort(category_items, category_order)
 
