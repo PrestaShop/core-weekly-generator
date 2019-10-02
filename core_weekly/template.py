@@ -117,7 +117,7 @@ Happy contributin' everyone!
         return '''
 - [{opened_issues_count} new issues](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Aissue+created%3A{date_range}) have been created in the project repositories;
 - [{closed_issues_count} issues have been closed](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Aissue+closed%3A{date_range}), including [{fixed_issues_count} fixed issues](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Aissue+label%3Afixed+closed%3A{date_range}) on the core;
-        '''.format(
+'''.format(
             opened_issues_count=opened_issues['total_count'],
             closed_issues_count=closed_issues['total_count'],
             fixed_issues_count=fixed_issues['total_count'],
@@ -128,10 +128,8 @@ Happy contributin' everyone!
     # Get Pull requests links
     #
     def pr_links(self, opened_pr, closed_pr, merged_pr, date_range):
-        return '''
-- [{opened_pr_count} pull requests have been opened](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Apr+created%3A{date_range}) in the project repositories;
+        return '''- [{opened_pr_count} pull requests have been opened](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Apr+created%3A{date_range}) in the project repositories;
 - [{closed_pr_count} pull requests have been closed](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Apr+closed%3A{date_range}), including [{merged_pr_count} merged pull requests](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Apr+merged%3A{date_range}).
-----------
         '''.format(
             opened_pr_count=opened_pr['total_count'],
             closed_pr_count=closed_pr['total_count'],
