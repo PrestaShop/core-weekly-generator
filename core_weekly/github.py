@@ -57,7 +57,7 @@ class GitHub():
     #
     def execute(self, request_url):
         logger.debug(
-            'URL: ' + request_url
+            'Execute URL: ' + request_url
         )
 
         resp = requests.get(
@@ -66,12 +66,14 @@ class GitHub():
 
         data = resp.json()
 
+        # Data not in cache, we must wait
         if hasattr(resp, 'from_cache') and not resp.from_cache:
             time.sleep(self.sleep_time)
 
         if 'next' in resp.links:
-            data += self.execute(
+            # Compute items if there is a next url
+            data['items'] += self.execute(
                 resp.links['next']['url']
-            )
+            )['items']
 
         return data
