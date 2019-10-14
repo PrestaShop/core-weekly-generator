@@ -6,9 +6,10 @@ from .template import Template
 
 class CoreWeekly():
     def __init__(self, args):
-        self.github = GitHub(args.no_cache)
+        self.github = GitHub(args.no_cache, args.debug)
         self.template = Template()
         self.date_range = args.date_range
+        self.is_debug = args.debug
 
     ##
     # Get opened issues
@@ -68,22 +69,24 @@ class CoreWeekly():
         opened_issues = self.get_opened_issues()
         closed_issues = self.get_closed_issues()
         fixed_issues = self.get_fixed_issues()
-        # opened_pr = self.get_opened_pr()
-        # closed_pr = self.get_closed_pr()
         merged_pr = self.get_merged_pr()
+
+        if self.is_debug:
+            opened_pr = self.get_opened_pr()
+            closed_pr = self.get_closed_pr()
 
         content = self.template.headers()
 
-        # debug only
-        # content += self.template.opened_issues(opened_issues)
-        # content += self.template.closed_issues(closed_issues)
-        # content += self.template.fixed_issues(fixed_issues)
-        # content += ''
-        # content += self.template.opened_pr(opened_pr)
-        # content += self.template.closed_pr(closed_pr)
-        # content += self.template.merged_pr(merged_pr)
-        # content += ''
-        # content += "\n\n"
+        if self.is_debug:
+            content += self.template.opened_issues(opened_issues)
+            content += self.template.closed_issues(closed_issues)
+            content += self.template.fixed_issues(fixed_issues)
+            content += ''
+            content += self.template.opened_pr(opened_pr)
+            content += self.template.closed_pr(closed_pr)
+            content += self.template.merged_pr(merged_pr)
+            content += ''
+            content += "\n\n"
 
         content += self.template.issues_links(
             opened_issues,

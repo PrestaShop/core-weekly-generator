@@ -18,10 +18,11 @@ ssl._create_default_https_context = ssl._create_unverified_context
 # Github api
 #
 class GitHub():
-    def __init__(self, no_cache):
+    def __init__(self, no_cache, debug):
         self.sleep_time = 2
         self.url = 'https://api.github.com/search/issues?per_page=100'
         self.no_cache = no_cache
+        self.is_debug = debug
 
     ##
     # Build github query
@@ -41,12 +42,13 @@ class GitHub():
         query_type = ('is:issue' if is_issue else 'is:pr')
 
         # Debug only
-        # print(
-        #    'Processing request for query: {query_type}+{query}'.format(
-        #        query=query,
-        #        query_type=query_type
-        #    )
-        # )
+        if self.is_debug:
+            print(
+                'Processing request for query: {query_type}+{query}'.format(
+                    query=query,
+                    query_type=query_type
+                )
+            )
 
         filename = 'cache/{query}-{query_type}'.format(
             query=query,
