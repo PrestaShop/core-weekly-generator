@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
-# Just in case it's not python 2
-try:
-    import urllib.request as urlrequest
-except ImportError:
-    import urllib as urlrequest
-
+import requests_cache
+import logging
+import requests
 import ssl
-import os
-import json
 import time
 
+logger = logging.getLogger(__name__)
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
@@ -23,6 +18,9 @@ class GitHub():
         self.url = 'https://api.github.com/search/issues?per_page=100'
         self.no_cache = no_cache
         self.is_debug = debug
+
+        if not self.no_cache:
+            requests_cache.install_cache('cache')
 
     ##
     # Build github query
@@ -41,33 +39,39 @@ class GitHub():
     def get_json(self, query, is_issue=True):
         query_type = ('is:issue' if is_issue else 'is:pr')
 
-        # Debug only
-        if self.is_debug:
-            print(
-                'Processing request for query: {query_type}+{query}'.format(
-                    query=query,
-                    query_type=query_type
-                )
+        logger.debug(
+            'Processing request for query: {query_type}+{query}'.format(
+                query=query,
+                query_type=query_type
             )
-
-        filename = 'cache/{query}-{query_type}'.format(
-            query=query,
-            query_type=query_type
         )
 
-        if os.path.exists('./' + filename) and not self.no_cache:
-            with open(filename, 'r') as f:
-                data = f.read()
-        else:
-            data = urlrequest.urlopen(
-                self.url +
-                self.build_query(query) +
-                '+' +
-                query_type
-            ).read().decode('utf-8')
+        data = self.execute(
+            self.url + self.build_query(query) + '+' + query_type
+        )
 
-            with open(filename, 'w') as f:
-                f.write(data)
+        return data
+
+    ##
+    # Execute
+    #
+    def execute(self, request_url):
+        logger.debug(
+            'URL: ' + request_url
+        )
+
+        resp = requests.get(
+            request_url
+        )
+
+        data = resp.json()
+
+        if hasattr(resp, 'from_cache') and not resp.from_cache:
             time.sleep(self.sleep_time)
 
-        return json.loads(data)
+        if 'next' in resp.links:
+            data += self.execute(
+                resp.links['next']['url']
+            )
+
+        return data

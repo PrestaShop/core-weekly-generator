@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import argparse
+import logging
 from core_weekly import CoreWeekly
 
 
@@ -12,6 +13,9 @@ def main():
     parser.add_argument('date_range', type=str, help='Date range')
 
     args = parser.parse_args()
+    logging.basicConfig()
+    if args.debug:
+        logging.getLogger().setLevel(logging.DEBUG)
 
     core_weekly = CoreWeekly(args)
     print(core_weekly.generate())
