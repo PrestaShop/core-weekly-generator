@@ -1,79 +1,30 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .github import GitHub
+from .report import Report
 from .template import Template
+from .parser import Parser
 
 
 class CoreWeekly():
     def __init__(self, args):
-        self.github = GitHub(args.no_cache, args.debug)
-        self.template = Template()
+        self.report = Report(args.date_range, args.no_cache, args.debug)
+        self.parser = Parser()
+        self.template = Template(self.parser)
         self.date_range = args.date_range
         self.is_debug = args.debug
-
-    ##
-    # Get opened issues
-    #
-    def get_opened_issues(self):
-        return self.github.get_json(
-            'created:{date_range}'.format(date_range=self.date_range)
-        )
-
-    ##
-    # Get closed issues
-    #
-    def get_closed_issues(self):
-        return self.github.get_json(
-            'closed:{date_range}'.format(date_range=self.date_range)
-        )
-
-    ##
-    # Get fixed issues
-    #
-    def get_fixed_issues(self):
-        return self.github.get_json(
-            'label:fixed+closed:{date_range}'.format(date_range=self.date_range)
-        )
-
-    ##
-    # Get opened pull requests
-    #
-    def get_opened_pr(self):
-        return self.github.get_json(
-            'created:{date_range}'.format(date_range=self.date_range),
-            False
-        )
-
-    ##
-    # Get closed pull requests
-    #
-    def get_closed_pr(self):
-        return self.github.get_json(
-            'closed:{date_range}'.format(date_range=self.date_range),
-            False
-        )
-
-    ##
-    # Get merged pull request
-    #
-    def get_merged_pr(self):
-        return self.github.get_json(
-            'merged:{date_range}'.format(date_range=self.date_range),
-            False
-        )
 
     ##
     # Generate Core weekly markdown content
     #
     def generate(self):
-        opened_issues = self.get_opened_issues()
-        closed_issues = self.get_closed_issues()
-        fixed_issues = self.get_fixed_issues()
-        merged_pr = self.get_merged_pr()
+        opened_issues = self.report.get_opened_issues()
+        closed_issues = self.report.get_closed_issues()
+        fixed_issues = self.report.get_fixed_issues()
+        merged_pull_requests = self.report.get_merged_pull_requests()
 
         if self.is_debug:
-            opened_pr = self.get_opened_pr()
-            closed_pr = self.get_closed_pr()
+            opened_pull_requests = self.report.get_opened_pull_requests()
+            closed_pull_requests = self.report.get_closed_pull_requests()
 
         content = self.template.headers()
 
@@ -82,11 +33,10 @@ class CoreWeekly():
             content += self.template.closed_issues(closed_issues)
             content += self.template.fixed_issues(fixed_issues)
             content += ''
-            content += self.template.opened_pr(opened_pr)
-            content += self.template.closed_pr(closed_pr)
-            content += self.template.merged_pr(merged_pr)
-            content += ''
-            content += "\n\n"
+            content += self.template.opened_pull_requests(opened_pull_requests)
+            content += self.template.closed_pull_requests(closed_pull_requests)
+            content += self.template.merged_pull_requests(merged_pull_requests)
+            content += "\n\n\n"
 
         content += self.template.issues_links(
             opened_issues,
@@ -100,9 +50,34 @@ class CoreWeekly():
             fixed_issues,
             self.date_range
         )
-        content += self.template.build_merged_pull_requests(merged_pr)
+        content += self.template.build_merged_pull_requests(merged_pull_requests)
 
-        content += self.template.build_contributors_list(merged_pr)
+        content += self.template.build_contributors_list(merged_pull_requests)
         content += self.template.footers()
+
+        return content
+
+    ##
+    # Generate Core weekly community stats
+    #
+    def generate_community(self):
+        # opened_issues = self.template.get_pull_requests_data(self.report.get_opened_issues())
+        # closed_issues = self.template.get_pull_requests_data(self.report.get_closed_issues())
+        # fixed_issues = self.template.get_pull_requests_data(self.report.get_fixed_issues())
+
+        opened_pull_requests = self.template.get_pull_requests_data(self.report.get_opened_pull_requests()['items'])
+        closed_pull_requests = self.template.get_pull_requests_data(self.report.get_closed_pull_requests()['items'])
+        merged_pull_requests = self.template.get_pull_requests_data(self.report.get_merged_pull_requests()['items'])
+
+        # content = self.template.build_community_issues(
+        #     opened_issues,
+        #     closed_issues,
+        #     fixed_issues
+        # )
+        content = self.template.build_community_pull_requests(
+            opened_pull_requests,
+            closed_pull_requests,
+            merged_pull_requests
+        )
 
         return content

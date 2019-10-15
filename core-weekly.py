@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 import argparse
 import logging
 from core_weekly import CoreWeekly
-from core_weekly import Community
 
 
 def main():
@@ -19,11 +18,10 @@ def main():
     if args.debug:
         logging.getLogger().setLevel(logging.DEBUG)
 
+    core_weekly = CoreWeekly(args)
     if args.community:
-        community = Community(args)
-        print(community.generate())
+        print(core_weekly.generate_community())
     else:
-        core_weekly = CoreWeekly(args)
         print(core_weekly.generate())
 
 
