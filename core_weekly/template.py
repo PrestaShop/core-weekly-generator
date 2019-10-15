@@ -256,13 +256,14 @@ Happy contributin' everyone!
     # Get Repositories
     #
     # :param dict items: Repositories
+    # :param bool raw: Raw data
     #
     # :return dict
     #
-    def get_repositories(self, items):
+    def get_repositories(self, items, raw=False):
         results = {}
         for item in items:
-            repository = self.parser.extract_repository(item['html_url'])
+            repository = self.parser.extract_repository(item['html_url'], raw)
             if repository in results:
                 results[repository].append(item)
             else:
@@ -383,7 +384,7 @@ PrestaShop:
     # :param list items: List of items
     #
     def get_pull_requests_data(self, items):
-        sorted_results = self.get_repositories(items)
+        sorted_results = self.get_repositories(items, True)
         core_items = sorted_results.get('PrestaShop')
 
         results = {
@@ -394,6 +395,9 @@ PrestaShop:
         for item in core_items:
             branch = self.parser.extract_branch(item['body'])
             if branch:
+                if branch not in CORE_BRANCHES:
+                    branch = 'N/A'
+
                 if branch in results['branches']:
                     results['branches'][branch] += 1
                 else:

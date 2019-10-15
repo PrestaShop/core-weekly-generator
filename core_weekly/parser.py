@@ -49,11 +49,12 @@ class Parser:
     # Extract repository
     #
     # :param str url: URL string
+    # :param bool raw: Raw data
     #
-    def extract_repository(self, url):
+    def extract_repository(self, url, raw=False):
         matches = re.search('github.com/PrestaShop/(.+?)/', url)
         if matches:
-            if matches.group(1) in PROJECTS.keys():
+            if not raw and matches.group(1) in PROJECTS.keys():
                 # map repository with a project name
                 return PROJECTS[matches.group(1)]
 
