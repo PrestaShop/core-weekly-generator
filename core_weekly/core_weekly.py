@@ -3,15 +3,29 @@ from __future__ import unicode_literals
 from .report import Report
 from .template import Template
 from .parser import Parser
+import datetime
+import re
 
 
 class CoreWeekly():
     def __init__(self, args):
-        self.report = Report(args.date_range, args.no_cache, args.debug)
+        self.date_range = self.get_date_range_from_week(args.year, args.date)
+        self.report = Report(self.date_range, args.no_cache, args.debug)
         self.parser = Parser()
         self.template = Template(self.parser)
-        self.date_range = args.date_range
         self.is_debug = args.debug
+
+    def get_date_range_from_week(self, year, date):
+        if not re.match(r'^\d+$', date):
+            return date
+
+        if year is None:
+            year = datetime.datetime.now().year
+
+        first_day = datetime.datetime.strptime(f'{year}-W{int(date )- 1}-1', "%Y-W%W-%w").date()
+        last_day = first_day + datetime.timedelta(days=6.9)
+
+        return str(first_day) + '..' + str(last_day)
 
     ##
     # Generate Core weekly markdown content

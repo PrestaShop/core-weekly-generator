@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from core_weekly import CoreWeekly
 import argparse
 import logging
-from core_weekly import CoreWeekly
 
 
 def main():
@@ -11,7 +11,8 @@ def main():
     parser.add_argument('--no-cache', action='store_const', const=True, help='Disable cache')
     parser.add_argument('--debug', action='store_const', const=True, help='Use Debug')
     parser.add_argument('--community', action='store_const', const=True, help='Print community report')
-    parser.add_argument('date_range', type=str, help='Date range')
+    parser.add_argument('--year', type=str, help='Specifcy which year you want to use in Week context')
+    parser.add_argument('date', type=str, help='Date range, or week number')
 
     args = parser.parse_args()
     logging.basicConfig()
