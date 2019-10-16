@@ -20,12 +20,14 @@ class CoreWeekly():
         :type args: dict
 
         """
-        self.year = None
-        self.week = None
-        self.date_range = self.get_date_range_from_week(args.date, args.year)
-        self.report = Report(self.date_range, args.no_cache, args.debug)
-        self.parser = Parser()
-        self.template = Template(self.parser)
+        if args.date is not None:
+            self.year = None
+            self.week = None
+            self.date_range = self.get_date_range_from_week(args.date, args.year)
+            self.report = Report(self.date_range, args.no_cache, args.debug)
+            self.parser = Parser()
+            self.template = Template(self.parser)
+
         self.is_debug = args.debug
 
     def get_date_range_from_week(self, date, year):
@@ -163,3 +165,6 @@ class CoreWeekly():
         """
         with open(directory / str(self.week + '_' + filename + '.json'), 'w') as jsonfile:
             json.dump(data, jsonfile)
+
+    def generate_graph(self):
+        pass
