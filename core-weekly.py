@@ -10,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser(description="PrestaShop Core Weekly")
     parser.add_argument('--no-cache', action='store_const', const=True, help='Disable cache')
     parser.add_argument('--debug', action='store_const', const=True, help='Use Debug')
-    parser.add_argument('--stats', action='store_const', const=True, help='Print stats report')
+    parser.add_argument('--stats', action='store_const', const=True, help='Print stats report and save it in json file if you specify a week number')
     parser.add_argument('--year', type=str, help='Specifcy which year you want to use in Week context')
     parser.add_argument('date', type=str, help='Date range, or week number')
 

@@ -3,8 +3,13 @@ from __future__ import unicode_literals
 from .report import Report
 from .template import Template
 from .parser import Parser
+from pathlib import Path
 import datetime
+import json
 import re
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CoreWeekly():
@@ -15,6 +20,8 @@ class CoreWeekly():
         :type args: dict
 
         """
+        self.year = None
+        self.week = None
         self.date_range = self.get_date_range_from_week(args.date, args.year)
         self.report = Report(self.date_range, args.no_cache, args.debug)
         self.parser = Parser()
@@ -36,6 +43,9 @@ class CoreWeekly():
 
         if year is None:
             year = datetime.datetime.now().year
+
+        self.year = year
+        self.week = date
 
         first_day = datetime.datetime.strptime(f'{year}-W{int(date )- 1}-1', "%Y-W%W-%w").date()
         last_day = first_day + datetime.timedelta(days=6.9)
@@ -96,23 +106,60 @@ class CoreWeekly():
         :rtype: str
 
         """
-        # opened_issues = self.template.get_pull_requests_data(self.report.get_opened_issues())
-        # closed_issues = self.template.get_pull_requests_data(self.report.get_closed_issues())
-        # fixed_issues = self.template.get_pull_requests_data(self.report.get_fixed_issues())
+        opened_issues = self.template.get_issues_data(self.report.get_opened_issues()['items'])
+        closed_issues = self.template.get_issues_data(self.report.get_closed_issues()['items'])
+        fixed_issues = self.template.get_issues_data(self.report.get_fixed_issues()['items'])
 
         opened_pull_requests = self.template.get_pull_requests_data(self.report.get_opened_pull_requests()['items'])
         closed_pull_requests = self.template.get_pull_requests_data(self.report.get_closed_pull_requests()['items'])
         merged_pull_requests = self.template.get_pull_requests_data(self.report.get_merged_pull_requests()['items'])
 
-        # content = self.template.build_stats_issues(
-        #     opened_issues,
-        #     closed_issues,
-        #     fixed_issues
-        # )
-        content = self.template.build_stats_pull_requests(
+        content = self.template.build_stats_issues(
+            opened_issues,
+            closed_issues,
+            fixed_issues
+        )
+        content += self.template.build_stats_pull_requests(
             opened_pull_requests,
             closed_pull_requests,
             merged_pull_requests
         )
 
+        if self.year and self.week:
+            directory = Path(__file__).resolve().parents[1] / 'var' / str(self.year)
+            logger.debug('Create directory: {}'.format(directory))
+            Path.mkdir(directory, parents=False, exist_ok=True)
+            self.save_json(
+                directory,
+                'issues',
+                {
+                    'opened': opened_issues,
+                    'closed': closed_issues,
+                    'fixed': fixed_issues,
+                }
+            )
+            self.save_json(
+                directory,
+                'pull_requests',
+                {
+                    'opened': opened_pull_requests,
+                    'closed': closed_pull_requests,
+                    'merged': merged_pull_requests,
+                }
+            )
+
         return content
+
+    def save_json(self, directory, filename, data):
+        """Save data into json file
+
+        :param directory: Directory name
+        :type directory: str
+        :param filename: File name
+        :type filename: str
+        :param data: Data to save
+        :type data: dict
+
+        """
+        with open(directory / str(self.week + '_' + filename + '.json'), 'w') as jsonfile:
+            json.dump(data, jsonfile)

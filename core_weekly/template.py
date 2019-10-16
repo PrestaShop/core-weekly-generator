@@ -447,16 +447,19 @@ Pull requests:
 Opened: {total_opened_pull_requests}
 PrestaShop:
 {opened_branches}
+Others:
 {opened_repositories}
 
 Closed: {total_closed_pull_requests}
 PrestaShop:
 {closed_branches}
+Others:
 {closed_repositories}
 
 Merged: {total_fixed_pull_requests}
 PrestaShop:
 {merged_branches}
+Others:
 {merged_repositories}
         '''.format(
             total_opened_pull_requests=opened['total_count'],
@@ -483,8 +486,28 @@ PrestaShop:
         """
         return "\n".join(["\t{}: {}".format(item, str(total)) for item, total in items.items()])
 
+    def get_issues_data(self, items):
+        """Get stats data for a list of pull requests
+
+        :param items: List of items
+        :type items: dict
+        :returns: Stats
+        :rtype: dict
+
+        """
+        sorted_results = self.get_repositories(items, True)
+        results = {
+            'total_count': len(items),
+            'repositories': {},
+        }
+
+        for repository, items in sorted_results.items():
+            results['repositories'][repository] = len(items)
+
+        return results
+
     def get_pull_requests_data(self, items):
-        """Get stats data for a list of items for pull requests
+        """Get stats data for a list of issues
 
         :param items: List of items
         :type items: dict
