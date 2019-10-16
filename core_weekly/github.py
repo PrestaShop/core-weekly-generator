@@ -14,6 +14,14 @@ ssl._create_default_https_context = ssl._create_unverified_context
 #
 class GitHub():
     def __init__(self, no_cache, debug):
+        """Constructor
+
+        :param no_cache: Disable cache
+        :type no_cache: bool
+        :param debug: Is debug mode enabled
+        :type debug: bool
+
+        """
         self.sleep_time = 2
         self.url = 'https://api.github.com/search/issues?per_page=100'
         self.no_cache = no_cache
@@ -22,21 +30,27 @@ class GitHub():
         if not self.no_cache:
             requests_cache.install_cache('cache')
 
-    ##
-    # Build github query
-    #
-    # :param query String
-    #
     def build_query(self, query):
+        """Build GitHub query
+
+        :param query: Query to execute through the API
+        :returns: Url which will be executed
+        :rtype: str
+
+        """
         return '&q=org:PrestaShop+is:public+-repo:prestashop/prestashop.github.io+' + query
 
-    ##
-    # Generate github request and return json content
-    #
-    # :param str query: Represents a GitHub query
-    # :param bool is_issue: Is issue or pull request
-    #
     def get_json(self, query, is_issue=True):
+        """Generate GitHub request and return json content
+
+        :param query: Query to execute
+        :type query: str
+        :param is_issue: Defined if it's an issue or a pull request
+        :param is_issue: bool
+        :returns: The json content
+        :rtype: dict
+
+        """
         query_type = ('is:issue' if is_issue else 'is:pr')
 
         logger.debug(
@@ -52,10 +66,14 @@ class GitHub():
 
         return data
 
-    ##
-    # Execute
-    #
     def execute(self, request_url):
+        """Execute url
+
+        :param request_url: The url to execute
+        :returns: The HTTP Response
+        :rtype: dict
+
+        """
         logger.debug(
             'Execute URL: ' + request_url
         )

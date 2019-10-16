@@ -8,12 +8,20 @@ from collections import OrderedDict
 
 class Template():
     def __init__(self, parser):
+        """Constructor
+
+        :param parser: Parser
+        :type parser: core_weekly.Parser
+        """
         self.parser = parser
 
-    ##
-    # Default headers
-    #
     def headers(self):
+        """Default header
+
+        :returns: Original headers
+        :rtype: str
+
+        """
         return '''---
 layout: post
 title:  "PrestaShop Core Weekly - Week XXXX of 2019"
@@ -38,10 +46,13 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
 ## A quick update about PrestaShop\'s GitHub issues and pull requests:
 '''
 
-    ##
-    # Default footers
-    #
     def footers(self):
+        """Default footer
+
+        :returns: Original footer
+        :rtype: str
+
+        """
         return '''
 Thank you to the contributors whose PRs haven't been merged yet! And of course, a big thank you to all those who contribute with issues and comments [on GitHub](https://github.com/PrestaShop/PrestaShop)!
 
@@ -55,64 +66,105 @@ If you want to contribute to PrestaShop with code, please read these pages first
 Happy contributin' everyone!
 '''
 
-    ##
-    # Get opened issues count and status
-    #
     def opened_issues(self, result):
+        """Get opened issues count and status
+
+        :param result: GitHub response
+        :returns: Issues information
+        :rtype: str
+
+        """
         return 'Open issues: {opened_issues_count}, Incomplete results: {query_incomplete_results}'.format(
             opened_issues_count=result['total_count'],
             query_incomplete_results=result['incomplete_results']
         )
 
-    ##
-    # Get closed issues count and status
-    #
     def closed_issues(self, result):
+        """Get closed issues count and status
+
+        :param result: GitHub response
+        :returns: Issues information
+        :rtype: str
+
+        """
         return 'Closed issues: {closed_issues_count}, Incomplete results: {query_incomplete_results}'.format(
             closed_issues_count=result['total_count'],
             query_incomplete_results=result['incomplete_results']
         )
 
-    ##
-    # Get fixed issues count and status
-    #
     def fixed_issues(self, result):
+        """Get fixed issues count and status
+
+        :param result: GitHub response
+        :returns: Issues information
+        :rtype: str
+
+        """
         return 'Fixed issues: {fixed_issues_count}, Incomplete results: {query_incomplete_results}'.format(
             fixed_issues_count=result['total_count'],
             query_incomplete_results=result['incomplete_results']
         )
 
-    ##
-    # Get opened pull requests count and status
-    #
     def opened_pull_requests(self, result):
+        """Get opened pull requests count and status
+
+        :param result: GitHub response
+        :returns: Pull requests information
+        :rtype: str
+
+        """
         return 'Opened pull requests: {opened_pull_requests_count}, Incomplete results: {query_incomplete_results}'.format(
             opened_pull_requests_count=result['total_count'],
             query_incomplete_results=result['incomplete_results']
         )
 
-    ##
-    # Get closed pull requests count and status
-    #
     def closed_pull_requests(self, result):
+        """Get closed pull requests count and status
+
+        :param result: GitHub response
+        :returns: Pull requests information
+        :rtype: str
+
+        """
         return 'Closed pull requests: {closed_pull_requests_count}, Incomplete results: {query_incomplete_results}'.format(
             closed_pull_requests_count=result['total_count'],
             query_incomplete_results=result['incomplete_results']
         )
 
-    ##
-    # Get merged pull requests count and status
-    #
     def merged_pull_requests(self, result):
+        """Get merged pull requests count and status
+
+        :param result: GitHub response
+        :returns: Pull requests information
+        :rtype: str
+
+        """
         return 'Merged pull requests: {merged_pull_requests_count}, Incomplete results: {query_incomplete_results}'.format(
             merged_pull_requests_count=result['total_count'],
             query_incomplete_results=result['incomplete_results']
         )
 
-    ##
-    # Get Issues links
-    #
-    def issues_links(self, opened_issues, closed_issues, fixed_issues, date_range):
+    def issues_links(
+            self,
+            opened_issues,
+            closed_issues,
+            fixed_issues,
+            date_range
+    ):
+        """Issues links
+
+        :param opened_issues: GitHub response
+        :type opened_issues: dict
+        :param closed_issues: GitHub response
+        :type closed_issues: dict
+        :param fixed_issues: GitHub response
+        :type fixed_issues: dict
+        :param date_range: Date range used
+        :type date_range: str
+        :returns: Links for issues
+        :rtype: str
+
+        """
         return '''
 - [{opened_issues_count} new issues](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Aissue+created%3A{date_range}) have been created in the project repositories;
 - [{closed_issues_count} issues have been closed](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Aissue+closed%3A{date_range}), including [{fixed_issues_count} fixed issues](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Aissue+label%3Afixed+closed%3A{date_range}) on the core;
@@ -123,10 +175,27 @@ Happy contributin' everyone!
             date_range=date_range
         )
 
-    ##
-    # Get Pull requests links
-    #
-    def pr_links(self, opened_pull_requests, closed_pull_requests, merged_pull_requests, date_range):
+    def pull_request_links(
+            self,
+            opened_pull_requests,
+            closed_pull_requests,
+            merged_pull_requests,
+            date_range
+    ):
+        """Pull requests links
+
+        :param opened_pull_requests: GitHub Response
+        :type opened_pull_requests: dict
+        :param closed_pull_requests: GitHub Response
+        :type closed_pull_requests: dict
+        :param merged_pull_requests: GitHub Response
+        :type merged_pull_requests: dict
+        :param date_range: Date range used
+        :type date_range: str
+        :returns: Link for pull requests
+        :rtype: str
+
+        """
         return '''- [{opened_pull_requests_count} pull requests have been opened](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Apr+created%3A{date_range}) in the project repositories;
 - [{closed_pull_requests_count} pull requests have been closed](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Apr+closed%3A{date_range}), including [{merged_pull_requests_count} merged pull requests](https://github.com/search?q=org%3APrestaShop+is%3Apublic++-repo%3Aprestashop%2Fprestashop.github.io++is%3Apr+merged%3A{date_range}).
         '''.format(
@@ -136,13 +205,17 @@ Happy contributin' everyone!
             date_range=date_range
         )
 
-    ##
-    # Just check if user who create PR is in Core team
-    # And change message if not.
-    #
-    # :param dict user: User information
-    #
     def thanks(self, user):
+        """Check if the user who created the pull request
+        is being part of the Core Team, and add a
+        Thanks you if not :)
+
+        :param user: User information
+        :type user: dict
+        :returns: Author line with a thanks you
+        :rtype: str
+
+        """
         if user['login'] in CORE_TEAM:
             message = ', by '
         else:
@@ -153,32 +226,40 @@ Happy contributin' everyone!
             author_url=user['html_url'],
         )
 
-    ##
-    # Generate author markdown links
-    #
-    # :param str author_name: Author name
-    # :param str author_url: Author ulr
-    #
-    # :return str
-    #
     def author_line(self, author_name, author_url, **kwargs):
+        """Generate author markdown links
+
+        :param author_name: Author name
+        :type author_name: str
+        :param author_url: Author profile url
+        :type author_url: str
+        :returns: Link in markdown to a user profile
+        :rtype: str
+
+        """
         return '[@{author_name}]({author_url})'.format(
             author_name=author_name,
             author_url=author_url,
         )
 
-    ##
-    # Sort core items by branch following given branch order
-    #
-    # thanks https://stackoverflow.com/questions/12031482/custom-sorting-python-dictionary
-    #
-    def custom_sort(self, dict1, key_order):
+    def custom_sort(self, data, key_order):
+        """Sort core items by branch following given branch order
+        Thanks https://stackoverflow.com/questions/12031482/custom-sorting-python-dictionary
+
+        :param data: Data we want to sort
+        :type data: dict
+        :param key_order: Key to order
+        :type key_order: str
+        :returns: Sorted dict
+        :rtype: dict
+
+        """
         only_useful_keys = []
         for key in key_order:
-            if key in dict1.keys():
+            if key in data.keys():
                 only_useful_keys.append(key)
 
-        items = [dict1[k] if k in dict1.keys() else 0 for k in only_useful_keys]
+        items = [data[k] if k in data.keys() else 0 for k in only_useful_keys]
         sorted_dict = OrderedDict()
 
         for i in range(len(only_useful_keys)):
@@ -186,12 +267,15 @@ Happy contributin' everyone!
 
         return sorted_dict
 
-    ##
-    # Build merged pull requests
-    #
-    # :param dict result: Pull requests
-    #
     def build_merged_pull_requests(self, result):
+        """Build merged pull requests
+
+        :param result: GitHub Response
+        :type result: dict
+        :returns: Pull requests information
+        :rtype: str
+
+        """
         content = ''
 
         sorted_results = self.get_repositories(result['items'])
@@ -212,10 +296,10 @@ Happy contributin' everyone!
 
                 content += "\n\n### " + category_name
                 for item in items:
-                    line = '* [#{pr_number}]({pr_url}): {pr_title}{thanks}'.format(
-                        pr_number=item['number'],
-                        pr_url=item['html_url'],
-                        pr_title=item['title'],
+                    line = '* [#{pull_request_number}]({pull_request_url}): {pull_request_title}{thanks}'.format(
+                        pull_request_number=item['number'],
+                        pull_request_url=item['html_url'],
+                        pull_request_title=item['title'],
                         thanks=self.thanks(item['user'])
                     )
 
@@ -228,10 +312,10 @@ Happy contributin' everyone!
         for repository, items in sorted_results.items():
             content += "\n\n### " + repository
             for item in items:
-                line = '* [#{pr_number}]({pr_url}): {pr_title}{thanks}'.format(
-                    pr_number=item['number'],
-                    pr_url=item['html_url'],
-                    pr_title=item['title'],
+                line = '* [#{pull_request_number}]({pull_request_url}): {pull_request_title}{thanks}'.format(
+                    pull_request_number=item['number'],
+                    pull_request_url=item['html_url'],
+                    pull_request_title=item['title'],
                     thanks=self.thanks(item['user']),
                 )
 
@@ -239,28 +323,31 @@ Happy contributin' everyone!
 
         return content
 
-    ##
-    # Get contributor list
-    #
-    # :param dict result List of pull requests
-    #
-    # :param str
-    #
     def build_contributors_list(self, result):
+        """Get contributor list
+
+        :param result: GitHub Response
+        :type result: dict
+        :returns: Thanks message for all contributors
+        :rtype: str
+
+        """
         head = "\n\n<hr />\n\n"
         thanks = 'Thank you to the contributors whose pull requests were merged since the last Core Weekly Report: '
 
         return head + thanks + '' + self.get_authors(result['items']) + "!\n"
 
-    ##
-    # Get Repositories
-    #
-    # :param dict items: Repositories
-    # :param bool raw: Raw data
-    #
-    # :return dict
-    #
     def get_repositories(self, items, raw=False):
+        """Get respositories and their items
+
+        :param items: GitHub items response
+        :type items: dict
+        :param raw: Use raw name
+        :type raw: bool
+        :returns: Dict of repositories
+        :rtype: dict
+
+        """
         results = {}
         for item in items:
             repository = self.parser.extract_repository(item['html_url'], raw)
@@ -272,14 +359,15 @@ Happy contributin' everyone!
 
         return results
 
-    ##
-    # Get Authors
-    #
-    # :param dict items: Repositories
-    #
-    # :return str
-    #
     def get_authors(self, items):
+        """Get author
+
+        :param items: GitHub items response
+        :type items: dict
+        :returns: List of authors
+        :rtype: str
+
+        """
         authors = []
         for item in items:
             authors.append(
@@ -291,12 +379,15 @@ Happy contributin' everyone!
 
         return ', '.join(authors)
 
-    ##
-    # Get PrestaShop repositories
-    #
-    # :param dict items: Repositories
-    #
     def sort_core_repositories(self, items):
+        """Get PrestaShop repositories
+
+        :param items: GitHub items response
+        :type items: dict
+        :returns: Sorted core repositories
+        :rtype: dict
+
+        """
         sorted_core_items = {}
         for item in items:
             category = self.parser.extract_core_category(item['body'])
@@ -312,16 +403,19 @@ Happy contributin' everyone!
 
         return sorted_core_items
 
-    ##
-    # Build community issues
-    #
-    # :param dict opened: Stats about opened issues
-    # :param dict closed: Stats about closed issues
-    # :param dict fixed: Stats about fixed issues
-    #
-    # return str
-    #
-    def build_community_issues(self, opened, closed, fixed):
+    def build_stats_issues(self, opened, closed, fixed):
+        """Build stats for issues
+
+        :param opened: Stats about opened issues
+        :type opened: dict
+        :param closed: Stats about closed issues
+        :type closed: dict
+        :param fixed: Stats about fixed issues
+        :type fixed: dict
+        :returns: Stats for issues
+        :rtype: str
+
+        """
         return '''
 Issues:
 
@@ -334,16 +428,19 @@ Fixed: {total_fixed_issues}
             total_fixed_issues=fixed['total_count']
         )
 
-    ##
-    # Build community issues
-    #
-    # :param dict opened: Stats about opened pull requests
-    # :param dict closed: Stats about closed pull requests
-    # :param dict merged: Stats about merged pull requests
-    #
-    # return str
-    #
-    def build_community_pull_requests(self, opened, closed, merged):
+    def build_stats_pull_requests(self, opened, closed, merged):
+        """FIXME! briefly describe function
+
+        :param opened: Stats about opened pull requests
+        :type opened: dict
+        :param closed: Stats about closed pull requests
+        :type closed: dict
+        :param merged: Stats about merged pull requests
+        :type merged: dict
+        :returns: Stats for pull requests
+        :rtype: str
+
+        """
         content = '''
 Pull requests:
 
@@ -376,14 +473,25 @@ PrestaShop:
         return content
 
     def get_items_total_count(self, items):
+        """Get items total count (key => value)
+
+        :param items: Items
+        :type items: dict
+        :returns: String with key => value
+        :rtype: str
+
+        """
         return "\n".join(["\t{}: {}".format(item, str(total)) for item, total in items.items()])
 
-    ##
-    # Get community data for a list of items
-    #
-    # :param list items: List of items
-    #
     def get_pull_requests_data(self, items):
+        """Get stats data for a list of items for pull requests
+
+        :param items: List of items
+        :type items: dict
+        :returns: Stats
+        :rtype: dict
+
+        """
         sorted_results = self.get_repositories(items, True)
         core_items = sorted_results.get('PrestaShop')
 

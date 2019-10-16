@@ -10,7 +10,7 @@ def main():
     parser = argparse.ArgumentParser(description="PrestaShop Core Weekly")
     parser.add_argument('--no-cache', action='store_const', const=True, help='Disable cache')
     parser.add_argument('--debug', action='store_const', const=True, help='Use Debug')
-    parser.add_argument('--community', action='store_const', const=True, help='Print community report')
+    parser.add_argument('--stats', action='store_const', const=True, help='Print stats report')
     parser.add_argument('--year', type=str, help='Specifcy which year you want to use in Week context')
     parser.add_argument('date', type=str, help='Date range, or week number')
 
@@ -20,8 +20,8 @@ def main():
         logging.getLogger().setLevel(logging.DEBUG)
 
     core_weekly = CoreWeekly(args)
-    if args.community:
-        print(core_weekly.generate_community())
+    if args.stats:
+        print(core_weekly.generate_stats())
     else:
         print(core_weekly.generate())
 

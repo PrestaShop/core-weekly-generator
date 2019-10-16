@@ -9,13 +9,28 @@ import re
 
 class CoreWeekly():
     def __init__(self, args):
-        self.date_range = self.get_date_range_from_week(args.year, args.date)
+        """Constructor
+
+        :param args: Arguments
+        :type args: dict
+
+        """
+        self.date_range = self.get_date_range_from_week(args.date, args.year)
         self.report = Report(self.date_range, args.no_cache, args.debug)
         self.parser = Parser()
         self.template = Template(self.parser)
         self.is_debug = args.debug
 
-    def get_date_range_from_week(self, year, date):
+    def get_date_range_from_week(self, date, year):
+        """Get data range from week number
+
+        :param date: Date or week number
+        :type date: str
+        :param year: Year
+        :type year: str
+        :returns: A date range
+        :rtype: str
+        """
         if not re.match(r'^\d+$', date):
             return date
 
@@ -27,10 +42,13 @@ class CoreWeekly():
 
         return str(first_day) + '..' + str(last_day)
 
-    ##
-    # Generate Core weekly markdown content
-    #
     def generate(self):
+        """Generate Core weekly markdown content
+
+        :returns: Core weekly
+        :rtype: str
+
+        """
         opened_issues = self.report.get_opened_issues()
         closed_issues = self.report.get_closed_issues()
         fixed_issues = self.report.get_fixed_issues()
@@ -58,7 +76,7 @@ class CoreWeekly():
             fixed_issues,
             self.date_range
         )
-        content += self.template.pr_links(
+        content += self.template.pull_request_links(
             opened_issues,
             closed_issues,
             fixed_issues,
@@ -71,10 +89,13 @@ class CoreWeekly():
 
         return content
 
-    ##
-    # Generate Core weekly community stats
-    #
-    def generate_community(self):
+    def generate_stats(self):
+        """Generate Core weekly community stats
+
+        :returns: Generated stats content
+        :rtype: str
+
+        """
         # opened_issues = self.template.get_pull_requests_data(self.report.get_opened_issues())
         # closed_issues = self.template.get_pull_requests_data(self.report.get_closed_issues())
         # fixed_issues = self.template.get_pull_requests_data(self.report.get_fixed_issues())
@@ -83,12 +104,12 @@ class CoreWeekly():
         closed_pull_requests = self.template.get_pull_requests_data(self.report.get_closed_pull_requests()['items'])
         merged_pull_requests = self.template.get_pull_requests_data(self.report.get_merged_pull_requests()['items'])
 
-        # content = self.template.build_community_issues(
+        # content = self.template.build_stats_issues(
         #     opened_issues,
         #     closed_issues,
         #     fixed_issues
         # )
-        content = self.template.build_community_pull_requests(
+        content = self.template.build_stats_pull_requests(
             opened_pull_requests,
             closed_pull_requests,
             merged_pull_requests

@@ -3,28 +3,36 @@ import re
 
 
 class Parser:
-    ##
-    # Get body detail
-    #
-    # :param str body: Body string
-    # :param str search_type: Type we want to retrieve in the body
-    # :param str regex: Selector
-    #
-    def get_body_detail(self, body, search_type, regex='.+'):
+    def get_body_detail(self, body, key, regex='.+'):
+        """Parse body to retrieve a specific detail
+
+        :param body: Body content
+        :type body: str
+        :param key: The key we want to retrieve
+        :type key: str
+        :param regex: Optional regex
+        :type regex: str
+        :returns: Match object
+        :rtype: re.Match
+
+        """
         return re.search(
             r'(?:\|\s+{}\?\s+\|\s+)({})\s+'.format(
-                search_type,
+                key,
                 regex
             ),
             body
         )
 
-    ##
-    # Extract core category
-    #
-    # :param str body: Body string
-    #
     def extract_core_category(self, body):
+        """Extract core category information
+
+        :param body: Body content
+        :type body: str
+        :returns: Returns category if possible, otherwise None
+        :rtype: None|str
+
+        """
         matches = self.get_body_detail(body, 'Category')
         if matches:
             if matches.group(1):
@@ -32,12 +40,15 @@ class Parser:
 
             return 'Misc'
 
-    ##
-    # Extract branch
-    #
-    # :param str body: Body string
-    #
     def extract_branch(self, body):
+        """Extract core branch information
+
+        :param body: Body content
+        :type body: str
+        :returns: Returns branch if possible, otherwise None
+        :rtype: None|str
+
+        """
         matches = self.get_body_detail(body, 'Branch')
         if matches:
             if matches.group(1):
@@ -45,13 +56,17 @@ class Parser:
 
             return 'unknown branch'
 
-    ##
-    # Extract repository
-    #
-    # :param str url: URL string
-    # :param bool raw: Raw data
-    #
     def extract_repository(self, url, raw=False):
+        """Extract repository from GitHub URL
+
+        :param body: Body content
+        :type body: str
+        :param raw: Translate if raw is False, otherwise returns the urlvalue
+        :type raw: bool
+        :returns: Returns reposutory if possible, otherwise the url
+        :rtype: str
+
+        """
         matches = re.search('github.com/PrestaShop/(.+?)/', url)
         if matches:
             if not raw and matches.group(1) in PROJECTS.keys():
