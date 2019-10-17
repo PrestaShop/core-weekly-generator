@@ -2,3 +2,4 @@ pip-tools
 argparse
 requests
 requests_cache
+plotly

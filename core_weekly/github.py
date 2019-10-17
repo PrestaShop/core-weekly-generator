@@ -13,6 +13,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 # Github api
 #
 class GitHub():
+    retries = 0
+
     def __init__(self, no_cache, debug):
         """Constructor
 
@@ -84,14 +86,23 @@ class GitHub():
 
         data = resp.json()
 
-        # Data not in cache, we must wait
-        if hasattr(resp, 'from_cache') and not resp.from_cache:
+        if resp.status_code != 200:
+            # Something wen wrong, retry
             time.sleep(self.sleep_time)
+            GitHub.retries += 1
+            if GitHub.retries >= 10:
+                raise requests.HTTPError(resp.text)
 
-        if 'next' in resp.links:
-            # Compute items if there is a next url
-            data['items'] += self.execute(
-                resp.links['next']['url']
-            )['items']
+            return self.execute(request_url)
+        else:
+            GitHub.retries = 0
+            # Data not in cache, we must wait
+            if hasattr(resp, 'from_cache') and not resp.from_cache:
+                time.sleep(self.sleep_time)
 
+                if 'next' in resp.links:
+                    # Compute items if there is a next url
+                    data['items'] += self.execute(
+                        resp.links['next']['url']
+                    )['items']
         return data
