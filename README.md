@@ -27,7 +27,7 @@ optional arguments:
   --stats      Print stats report and save it in json file if you specify a
                week number
   --year YEAR  Specifcy which year you want to use in Week context
-  --graph      Specifcy which year you want to use in Week context
+  --graph      Generate graphs based on data stored in var directory
   --date DATE  Date range, or week number
 ```
 
