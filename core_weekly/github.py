@@ -96,7 +96,7 @@ class GitHub():
             return self.execute(request_url)
         else:
             GitHub.retries = 0
-            # Data not in cache, we must wait
+            # Data not in cache, we must wait because of GitHub API rate limits
             if hasattr(resp, 'from_cache') and not resp.from_cache:
                 time.sleep(self.sleep_time)
 
