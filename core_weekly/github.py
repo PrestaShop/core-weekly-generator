@@ -100,9 +100,9 @@ class GitHub():
             if hasattr(resp, 'from_cache') and not resp.from_cache:
                 time.sleep(self.sleep_time)
 
-                if 'next' in resp.links:
-                    # Compute items if there is a next url
-                    data['items'] += self.execute(
-                        resp.links['next']['url']
-                    )['items']
+            if 'next' in resp.links:
+                # Compute items if there is a next url
+                data['items'] += self.execute(
+                    resp.links['next']['url']
+                )['items']
         return data

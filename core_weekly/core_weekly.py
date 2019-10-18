@@ -20,36 +20,36 @@ class CoreWeekly():
         :type args: dict
 
         """
-        if args.date is not None:
-            self.year = None
-            self.week = None
-            self.date_range = self.get_date_range_from_week(args.date, args.year)
+        self.year = None
+        self.week = None
+        self.date_range = args.date
+        if args.week is not None:
+            self.date_range = self.get_date_range_from_week(args.week, args.year)
+
+        if self.date_range:
             self.report = Report(self.date_range, args.no_cache, args.debug)
             self.parser = Parser()
             self.template = Template(self.parser)
 
         self.is_debug = args.debug
 
-    def get_date_range_from_week(self, date, year):
+    def get_date_range_from_week(self, week, year):
         """Get data range from week number
 
-        :param date: Date or week number
-        :type date: str
+        :param week: Week number
+        :type week: str
         :param year: Year
         :type year: str
         :returns: A date range
         :rtype: str
         """
-        if not re.match(r'^\d+$', date):
-            return date
-
         if year is None:
             year = datetime.datetime.now().year
 
         self.year = year
-        self.week = date
+        self.week = week
 
-        first_day = datetime.datetime.strptime(f'{year}-W{int(date )- 1}-1', "%Y-W%W-%w").date()
+        first_day = datetime.datetime.strptime(f'{year}-W{int(week )- 1}-1', "%Y-W%W-%w").date()
         last_day = first_day + datetime.timedelta(days=6.9)
 
         return str(first_day) + '..' + str(last_day)
