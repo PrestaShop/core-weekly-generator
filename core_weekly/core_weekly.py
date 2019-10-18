@@ -6,7 +6,6 @@ from .parser import Parser
 from pathlib import Path
 import datetime
 import json
-import re
 import logging
 
 logger = logging.getLogger(__name__)
