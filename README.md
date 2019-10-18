@@ -16,7 +16,7 @@ Display help
 ```bash
 $ ./core-weekly.py --help
 usage: core-weekly.py [-h] [--no-cache] [--debug] [--stats] [--year YEAR]
-                      [--graph] [--date DATE]
+                      [--graph] (--date DATE | --week WEEK)
 
 PrestaShop Core Weekly
 
@@ -28,7 +28,8 @@ optional arguments:
                week number
   --year YEAR  Specifcy which year you want to use in Week context
   --graph      Generate graphs based on data stored in var directory
-  --date DATE  Date range, or week number
+  --date DATE  Date range
+  --week WEEK  Week number
 ```
 
 Generate Core Weekly with a date range
@@ -40,13 +41,13 @@ Generate Core Weekly with a date range
 Or easier by specifing a week number
 
 ```bash
- $ python ./core-weekly.py --date 11 > my-core-weekly.md
+ $ python ./core-weekly.py --week 11 > my-core-weekly.md
  ```
 
  And if you want the same week but in 2018
 
 ```bash
- $ python ./core-weekly.py --year 2018 --date 11 > my-core-weekly.md
+ $ python ./core-weekly.py --year 2018 --week 11 > my-core-weekly.md
  ```
 
 You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder categories, repositories, put the full category names instead of TE or CO) before publishing the article.

@@ -16,7 +16,7 @@ def main():
 
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--date', type=str, help='Date range')
-    group.add_argument('--week', type=int, help='Date range, or week number')
+    group.add_argument('--week', type=int, help='Week number')
 
     args = parser.parse_args()
     logging.basicConfig()
