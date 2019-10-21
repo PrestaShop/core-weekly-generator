@@ -88,9 +88,9 @@ class CoreWeekly():
             self.date_range
         )
         content += self.template.pull_request_links(
-            opened_issues,
-            closed_issues,
-            fixed_issues,
+            opened_pull_requests,
+            closed_pull_requests,
+            fixed_pull_requests,
             self.date_range
         )
         content += self.template.build_merged_pull_requests(merged_pull_requests)
