@@ -43,16 +43,17 @@ CORE_TEAM = (
 # List of PrestaShop project repositories
 #
 PROJECTS = {
-    'prestashop-specs': 'PrestaShop Specifications',
-    'docs': 'Changes in developer documentation',
-    'TranslationToolsBundle': 'TranslationTools Bundle',
     'QANightlyResults': 'QA nightly results',
-    'php-coding-standards': 'PHP Coding Standards',
-    'ps_facetedsearch': 'Faceted search module',
-    'gamification': 'Gamification module',
+    'TranslationToolsBundle': 'TranslationTools Bundle',
     'autoupgrade': 'Auto Upgrade module',
     'classic-rocket': 'Classic-rocket theme',
+    'docker': 'Docker',
+    'docs': 'Changes in developer documentation',
+    'gamification': 'Gamification module',
+    'php-coding-standards': 'PHP Coding Standards',
+    'prestashop-specs': 'PrestaShop Specifications',
     'prestashop-ui-kit': 'Prestashop UI Kit',
+    'ps_facetedsearch': 'Faceted search module',
 }
 
 ##
@@ -68,3 +69,10 @@ CATEGORIES = {
     'ME': 'Merge',
     'Misc': 'Misc',
 }
+
+CORE_BRANCHES = (
+    'develop',
+    '1.7.6.x',
+    '1.7.5.x',
+    '1.7.4.x'
+)
