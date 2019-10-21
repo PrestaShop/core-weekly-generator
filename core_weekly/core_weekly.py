@@ -162,7 +162,7 @@ class CoreWeekly():
         :type data: dict
 
         """
-        with open(directory / str(self.week + '_' + filename + '.json'), 'w') as jsonfile:
+        with open(directory / str(str(self.week) + '_' + filename + '.json'), 'w') as jsonfile:
             json.dump(data, jsonfile)
 
     def generate_graph(self):
