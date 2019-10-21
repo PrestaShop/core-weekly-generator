@@ -33,6 +33,9 @@ class Parser:
         :rtype: None|str
 
         """
+        if body is None:
+            return
+
         matches = self.get_body_detail(body, 'Category')
         if matches:
             if matches.group(1):
@@ -49,6 +52,9 @@ class Parser:
         :rtype: None|str
 
         """
+        if body is None:
+            return
+
         matches = self.get_body_detail(body, 'Branch')
         if matches:
             if matches.group(1):

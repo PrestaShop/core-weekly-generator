@@ -24,7 +24,7 @@ class GitHub():
         :type debug: bool
 
         """
-        self.sleep_time = 2
+        self.sleep_time = 3
         self.url = 'https://api.github.com/search/issues?per_page=100'
         self.no_cache = no_cache
         self.is_debug = debug
@@ -97,7 +97,7 @@ class GitHub():
         else:
             GitHub.retries = 0
             # Data not in cache, we must wait because of GitHub API rate limits
-            if hasattr(resp, 'from_cache') and not resp.from_cache:
+            if not hasattr(resp, 'from_cache') or not resp.from_cache:
                 time.sleep(self.sleep_time)
 
             if 'next' in resp.links:
