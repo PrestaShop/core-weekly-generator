@@ -12,11 +12,11 @@ def main():
     parser.add_argument('--debug', action='store_const', const=True, help='Use Debug')
     parser.add_argument('--stats', action='store_const', const=True, help='Print stats report and save it in json file if you specify a week number')
     parser.add_argument('--year', type=str, help='Specifcy which year you want to use in Week context')
-    parser.add_argument('--graph', action='store_const', const=True, help='Generate graphs based on data stored in var directory')
 
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--date', type=str, help='Date range')
     group.add_argument('--week', type=int, help='Week number')
+    group.add_argument('--graph', action='store_const', const=True, help='Generate graphs based on data stored in var directory')
 
     args = parser.parse_args()
     logging.basicConfig()

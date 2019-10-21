@@ -3,3 +3,4 @@ argparse
 requests
 requests_cache
 plotly
+pandas

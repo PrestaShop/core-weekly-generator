@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from .report import Report
 from .template import Template
 from .parser import Parser
+from .graph import Graph
 from pathlib import Path
 import datetime
 import json
@@ -31,6 +32,9 @@ class CoreWeekly():
             self.template = Template(self.parser)
 
         self.is_debug = args.debug
+        self.directory = Path(__file__).resolve().parents[1] / 'var'
+        if args.graph is not None:
+            self.graph = Graph(self.directory)
 
     def get_date_range_from_week(self, week, year):
         """Get data range from week number
@@ -127,7 +131,7 @@ class CoreWeekly():
         )
 
         if self.year and self.week:
-            directory = Path(__file__).resolve().parents[1] / 'var' / str(self.year)
+            directory = self.directory / str(self.year)
             logger.debug('Create directory: {}'.format(directory))
             Path.mkdir(directory, parents=False, exist_ok=True)
             self.save_json(
@@ -166,4 +170,4 @@ class CoreWeekly():
             json.dump(data, jsonfile)
 
     def generate_graph(self):
-        pass
+        self.graph.build()
