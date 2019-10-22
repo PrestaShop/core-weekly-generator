@@ -1,1 +1,1 @@
-{"opened": {"total_count": 2, "repositories": {"docker-ci": 1, "prestafony-project": 1}}, "closed": {"total_count": 0, "repositories": {}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 2, "repositories": {"docker-ci": {"total_count": 1, "internal": 0, "external": 1}, "prestafony-project": {"total_count": 1, "internal": 1, "external": 0}}}, "closed": {"total_count": 0, "repositories": {}}, "fixed": {"total_count": 0, "repositories": {}}}

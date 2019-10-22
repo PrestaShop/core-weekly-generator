@@ -27,6 +27,11 @@
           :issues="stats[year].issues"
           :identifier="`issues-per-week-${year}`"
         />
+        <internal-external-per-week
+          :issues="stats[year].issues"
+          :pull-requests="stats[year].pull_requests"
+          :identifier="`internal-external-per-week-${year}`"
+        />
       </template>
     </section>
   </div>
@@ -35,8 +40,8 @@
 <script>
   import stats from '../public/computed.json';
   import PullRequestsPerWeek from './components/PullRequestsPerWeek';
-  import PullRequestsPerRepositories from './components/PullRequestsPerRepositories';
   import IssuesPerWeek from './components/IssuesPerWeek';
+  import InternalExternalPerWeek from './components/InternalExternalPerWeek';
 
   export default {
     name: 'App',
@@ -47,6 +52,7 @@
       };
     },
     components: {
+      InternalExternalPerWeek,
       IssuesPerWeek,
       PullRequestsPerWeek,
     },

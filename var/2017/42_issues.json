@@ -1,1 +1,1 @@
-{"opened": {"total_count": 3, "repositories": {"docker": 2, "prestonbot": 1}}, "closed": {"total_count": 0, "repositories": {}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 3, "repositories": {"docker": {"total_count": 2, "internal": 0, "external": 2}, "prestonbot": {"total_count": 1, "internal": 1, "external": 0}}}, "closed": {"total_count": 0, "repositories": {}}, "fixed": {"total_count": 0, "repositories": {}}}

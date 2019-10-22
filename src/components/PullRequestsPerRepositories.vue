@@ -1,12 +1,12 @@
 <template>
-  <div :id="identifier"></div>
+  <div :id="identifier" />
 </template>
 
 <script>
   import Plotly from 'plotly.js-dist';
 
   export default {
-    name: 'PullRequestsPerWeek',
+    name: 'PullRequestsPerRepositories',
     props: {
       identifier: {
         type: String,
@@ -14,40 +14,26 @@
       },
       pullRequests: {
         type: Object,
-        default: () => {
-          return {};
-        },
+        default: () => {},
+      },
+      type: {
+        type: String,
+        default: 'opened',
       },
     },
     mounted() {
       const weeks = Object.keys(this.pullRequests);
 
-      const opened = [];
-      const closed = [];
-      const merged = [];
+      const prs = [];
       weeks.forEach((week) => {
-        opened.push(this.pullRequests[week].opened.total_count);
-        closed.push(this.pullRequests[week].closed.total_count);
-        merged.push(this.pullRequests[week].merged.total_count);
+        prs.push(this.pullRequests[week][this.type].total_count);
       });
 
       const data = [
         {
           x: weeks,
-          y: opened,
+          y: prs,
           name: 'Opened',
-          type: 'bar',
-        },
-        {
-          x: weeks,
-          y: closed,
-          name: 'Closed',
-          type: 'bar',
-        },
-        {
-          x: weeks,
-          y: merged,
-          name: 'Merged',
           type: 'bar',
         },
       ];

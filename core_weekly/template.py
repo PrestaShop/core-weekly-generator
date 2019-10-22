@@ -463,13 +463,13 @@ Others:
 {merged_repositories}
         '''.format(
             total_opened_pull_requests=opened['total_count'],
-            opened_branches=self.get_items_total_count(opened['branches']),
+            opened_branches=self.get_items_total_count(opened['core']['branches']),
             opened_repositories=self.get_items_total_count(opened['repositories']),
             total_closed_pull_requests=closed['total_count'],
-            closed_branches=self.get_items_total_count(closed['branches']),
+            closed_branches=self.get_items_total_count(closed['core']['branches']),
             closed_repositories=self.get_items_total_count(closed['repositories']),
             total_fixed_pull_requests=merged['total_count'],
-            merged_branches=self.get_items_total_count(merged['branches']),
+            merged_branches=self.get_items_total_count(merged['core']['branches']),
             merged_repositories=self.get_items_total_count(merged['repositories']),
         )
 
@@ -502,7 +502,16 @@ Others:
         }
 
         for repository, items in sorted_results.items():
-            results['repositories'][repository] = len(items)
+            results['repositories'][repository] = {
+                'total_count': len(items),
+                'internal': 0,
+                'external': 0,
+            }
+            for item in items:
+                if item['user']['login'] in CORE_TEAM:
+                    results['repositories'][repository]['internal'] += 1
+                else:
+                    results['repositories'][repository]['external'] += 1
 
         return results
 
@@ -520,7 +529,11 @@ Others:
 
         results = {
             'total_count': len(items),
-            'branches': {},
+            'core': {
+                'branches': {},
+                'internal': 0,
+                'external': 0,
+            },
             'repositories': {},
         }
         for item in core_items:
@@ -529,14 +542,28 @@ Others:
                 if branch not in CORE_BRANCHES:
                     branch = 'N/A'
 
-                if branch in results['branches']:
-                    results['branches'][branch] += 1
+                if branch in results['core']['branches']:
+                    results['core']['branches'][branch] += 1
                 else:
-                    results['branches'][branch] = 1
+                    results['core']['branches'][branch] = 1
+
+                if item['user']['login'] in CORE_TEAM:
+                    results['core']['internal'] += 1
+                else:
+                    results['core']['external'] += 1
 
         # Now parse others repositories
         del sorted_results['PrestaShop']
         for repository, items in sorted_results.items():
-            results['repositories'][repository] = len(items)
+            results['repositories'][repository] = {
+                'total_count': len(items),
+                'internal': 0,
+                'external': 0,
+            }
+            for item in items:
+                if item['user']['login'] in CORE_TEAM:
+                    results['repositories'][repository]['internal'] += 1
+                else:
+                    results['repositories'][repository]['external'] += 1
 
         return results

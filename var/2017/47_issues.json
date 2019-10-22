@@ -1,1 +1,1 @@
-{"opened": {"total_count": 3, "repositories": {"ebay": 3}}, "closed": {"total_count": 2, "repositories": {"firebaseauthenticator": 1, "ps_emailgenerator": 1}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 3, "repositories": {"ebay": {"total_count": 3, "internal": 0, "external": 3}}}, "closed": {"total_count": 2, "repositories": {"firebaseauthenticator": {"total_count": 1, "internal": 0, "external": 1}, "ps_emailgenerator": {"total_count": 1, "internal": 0, "external": 1}}}, "fixed": {"total_count": 0, "repositories": {}}}

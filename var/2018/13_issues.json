@@ -1,1 +1,1 @@
-{"opened": {"total_count": 1, "repositories": {"ps_emailalerts": 1}}, "closed": {"total_count": 1, "repositories": {"amzpayments": 1}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 1, "repositories": {"ps_emailalerts": {"total_count": 1, "internal": 0, "external": 1}}}, "closed": {"total_count": 1, "repositories": {"amzpayments": {"total_count": 1, "internal": 0, "external": 1}}}, "fixed": {"total_count": 0, "repositories": {}}}

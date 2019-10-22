@@ -1,1 +1,1 @@
-{"opened": {"total_count": 10, "repositories": {"community-theme-16": 10}}, "closed": {"total_count": 11, "repositories": {"community-theme-16": 10, "avalaratax": 1}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 10, "repositories": {"community-theme-16": {"total_count": 10, "internal": 0, "external": 10}}}, "closed": {"total_count": 11, "repositories": {"community-theme-16": {"total_count": 10, "internal": 0, "external": 10}, "avalaratax": {"total_count": 1, "internal": 0, "external": 1}}}, "fixed": {"total_count": 0, "repositories": {}}}

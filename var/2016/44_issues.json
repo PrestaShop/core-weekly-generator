@@ -1,1 +1,1 @@
-{"opened": {"total_count": 0, "repositories": {}}, "closed": {"total_count": 2, "repositories": {"ps_imageslider": 1, "docker": 1}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 0, "repositories": {}}, "closed": {"total_count": 2, "repositories": {"ps_imageslider": {"total_count": 1, "internal": 0, "external": 1}, "docker": {"total_count": 1, "internal": 0, "external": 1}}}, "fixed": {"total_count": 0, "repositories": {}}}

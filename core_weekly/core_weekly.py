@@ -4,7 +4,6 @@ from .report import Report
 from .template import Template
 from .parser import Parser
 from pathlib import Path
-import collections
 import datetime
 import json
 import logging

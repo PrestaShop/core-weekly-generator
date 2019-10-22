@@ -1,1 +1,1 @@
-{"opened": {"total_count": 2, "repositories": {"chronopost": 1, "paypal": 1}}, "closed": {"total_count": 1, "repositories": {"chronopost": 1}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 2, "repositories": {"chronopost": {"total_count": 1, "internal": 0, "external": 1}, "paypal": {"total_count": 1, "internal": 0, "external": 1}}}, "closed": {"total_count": 1, "repositories": {"chronopost": {"total_count": 1, "internal": 0, "external": 1}}}, "fixed": {"total_count": 0, "repositories": {}}}

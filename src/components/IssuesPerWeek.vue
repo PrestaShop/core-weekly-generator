@@ -1,5 +1,5 @@
 <template>
-  <div :id="identifier"></div>
+  <div :id="identifier" />
 </template>
 
 <script>
@@ -14,9 +14,7 @@
       },
       issues: {
         type: Object,
-        default: () => {
-          return {};
-        },
+        default: () => {},
       },
     },
     mounted() {
@@ -36,23 +34,23 @@
           x: weeks,
           y: opened,
           name: 'Opened',
-          type: 'bar',
+          type: 'scatter',
         },
         {
           x: weeks,
           y: closed,
           name: 'Closed',
-          type: 'bar',
+          type: 'scatter',
         },
         {
           x: weeks,
           y: fixed,
           name: 'Fixed',
-          type: 'bar',
+          type: 'scatter',
         },
       ];
       const layout = {
-        barmode: 'group',
+        barmode: 'stack',
         title: 'Issues per week',
         autosize: true,
         autoscale: true,
