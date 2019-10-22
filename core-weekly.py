@@ -16,7 +16,7 @@ def main():
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--date', type=str, help='Date range')
     group.add_argument('--week', type=int, help='Week number')
-    group.add_argument('--graph', action='store_const', const=True, help='Generate graphs based on data stored in var directory')
+    group.add_argument('--compute', action='store_const', const=True, help='Compute data stored in var directory')
 
     args = parser.parse_args()
     logging.basicConfig()
@@ -28,8 +28,8 @@ def main():
         print(core_weekly.generate_stats())
     elif args.date or args.week:
         print(core_weekly.generate())
-    elif args.graph:
-        core_weekly.generate_graph()
+    elif args.compute:
+        core_weekly.compute_files()
 
 
 if __name__ == '__main__':
