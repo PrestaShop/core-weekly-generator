@@ -193,6 +193,5 @@ class CoreWeekly():
 
                 data[year][typ][week] = json.loads(Path(f).read_text())
 
-        data = collections.OrderedDict(data)
         with open(self.directory / '../public/computed.json', 'w') as jsonfile:
             json.dump(data, jsonfile)
