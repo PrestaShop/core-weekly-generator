@@ -9,7 +9,7 @@ certifi==2019.9.11        # via requests
 chardet==3.0.4            # via requests
 click==7.0                # via pip-tools
 idna==2.8                 # via requests
-pip-tools==4.1.0
+pip-tools==4.2.0
 requests-cache==0.5.2
 requests==2.22.0
 six==1.12.0               # via pip-tools
