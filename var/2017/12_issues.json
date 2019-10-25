@@ -1,1 +1,1 @@
-{"opened": {"total_count": 2, "repositories": {"ebay": 1, "openpayprestashop": 1}}, "closed": {"total_count": 1, "repositories": {"openpayprestashop": 1}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 2, "repositories": {"ebay": {"total_count": 1, "internal": 0, "external": 1}, "openpayprestashop": {"total_count": 1, "internal": 0, "external": 1}}}, "closed": {"total_count": 1, "repositories": {"openpayprestashop": {"total_count": 1, "internal": 0, "external": 1}}}, "fixed": {"total_count": 0, "repositories": {}}}

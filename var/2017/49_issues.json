@@ -1,1 +1,1 @@
-{"opened": {"total_count": 1, "repositories": {"ganalytics": 1}}, "closed": {"total_count": 1, "repositories": {"paymentexample": 1}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 1, "repositories": {"ganalytics": {"total_count": 1, "internal": 0, "external": 1}}}, "closed": {"total_count": 1, "repositories": {"paymentexample": {"total_count": 1, "internal": 0, "external": 1}}}, "fixed": {"total_count": 0, "repositories": {}}}

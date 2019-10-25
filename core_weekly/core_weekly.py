@@ -7,6 +7,7 @@ from pathlib import Path
 import datetime
 import json
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +32,7 @@ class CoreWeekly():
             self.template = Template(self.parser)
 
         self.is_debug = args.debug
+        self.directory = Path(__file__).resolve().parents[1] / 'var'
 
     def get_date_range_from_week(self, week, year):
         """Get data range from week number
@@ -127,7 +129,7 @@ class CoreWeekly():
         )
 
         if self.year and self.week:
-            directory = Path(__file__).resolve().parents[1] / 'var' / str(self.year)
+            directory = self.directory / str(self.year)
             logger.debug('Create directory: {}'.format(directory))
             Path.mkdir(directory, parents=False, exist_ok=True)
             self.save_json(
@@ -165,5 +167,30 @@ class CoreWeekly():
         with open(directory / str(str(self.week) + '_' + filename + '.json'), 'w') as jsonfile:
             json.dump(data, jsonfile)
 
-    def generate_graph(self):
-        pass
+    def compute_files(self):
+        p = Path(self.directory)
+        data = {}
+        for directory in p.iterdir():
+            if not directory.is_dir():
+                continue
+
+            year = directory.name
+            data[year] = {
+                'pull_requests': {},
+                'issues': {},
+            }
+
+            for f in list(p.glob(year + '/*.json')):
+                matches = re.search(r'^(\d+)_(\w+)\.json$', f.name)
+                if not matches:
+                    continue
+
+                week = int(matches.group(1))
+                typ = matches.group(2)
+                if week not in data[year][typ]:
+                    data[year][typ].update({week: []})
+
+                data[year][typ][week] = json.loads(Path(f).read_text())
+
+        with open(self.directory / '../public/computed.json', 'w') as jsonfile:
+            json.dump(data, jsonfile)

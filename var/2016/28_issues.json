@@ -1,1 +1,1 @@
-{"opened": {"total_count": 3, "repositories": {"firstdata": 1, "docker": 1, "community-theme-16": 1}}, "closed": {"total_count": 0, "repositories": {}}, "fixed": {"total_count": 0, "repositories": {}}}
+{"opened": {"total_count": 3, "repositories": {"firstdata": {"total_count": 1, "internal": 0, "external": 1}, "docker": {"total_count": 1, "internal": 0, "external": 1}, "community-theme-16": {"total_count": 1, "internal": 0, "external": 1}}}, "closed": {"total_count": 0, "repositories": {}}, "fixed": {"total_count": 0, "repositories": {}}}

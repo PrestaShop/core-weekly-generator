@@ -2,6 +2,9 @@
 
 from setuptools import setup
 
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
     name='PrestaShop Core Weekly',
     version='1.0',
@@ -14,10 +17,7 @@ setup(
     license='GPLv3',
     scripts=['core-weekly.py'],
     packages=['core_weekly'],
-    install_requires=[
-        'argparse==1.4.0',
-        'requests==2.19.1',
-    ],
+    install_requires=requirements,
     tests_require=[
         'coverage',
         'pycodestyle',
