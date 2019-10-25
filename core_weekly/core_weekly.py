@@ -66,10 +66,8 @@ class CoreWeekly():
         closed_issues = self.report.get_closed_issues()
         fixed_issues = self.report.get_fixed_issues()
         merged_pull_requests = self.report.get_merged_pull_requests()
-
-        if self.is_debug:
-            opened_pull_requests = self.report.get_opened_pull_requests()
-            closed_pull_requests = self.report.get_closed_pull_requests()
+        opened_pull_requests = self.report.get_opened_pull_requests()
+        closed_pull_requests = self.report.get_closed_pull_requests()
 
         content = self.template.headers()
 
