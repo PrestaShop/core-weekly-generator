@@ -36,7 +36,9 @@ CORE_TEAM = (
     'boubkerbribri',      # Boubker B.
     'matthieu-rolland',   # Matthieu R.
     'Progi1984',          # Franck L.
-    'Robin-Fischer-PS',   # Robin F
+    'Robin-Fischer-PS',   # Robin F.
+    'samuel-pires',       # Samuel S.
+    'atomiix',            # Thomas B. 
 )
 
 ##
