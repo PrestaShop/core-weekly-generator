@@ -34,7 +34,7 @@ tags:
  - core-weekly
 ---
 
-This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from XXXX to XXXX.
+This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from Monday XX to Sunday XX of MONTH XXXX.
 
 ![Core Weekly banner](/assets/images/2018/12/banner-core-weekly.jpg)
 
@@ -287,7 +287,7 @@ Happy contributin' everyone!
         category_order = CATEGORIES.keys()
 
         for branch, category_items in sorted_core_items.items():
-            content += "\n\n## Code changes in the '" + branch + "' branch (for vXXXX)"
+            content += "\n\n## Code changes in the '" + branch + "' branch"
 
             sorted_category_items = self.custom_sort(category_items, category_order)
 
@@ -303,7 +303,7 @@ Happy contributin' everyone!
                         thanks=self.thanks(item['user'])
                     )
 
-                    content += "\n\n" + line
+                    content += "\n" + line
 
         del sorted_results['PrestaShop']
 
@@ -319,7 +319,7 @@ Happy contributin' everyone!
                     thanks=self.thanks(item['user']),
                 )
 
-                content += "\n\n" + line
+                content += "\n" + line
 
         return content
 
