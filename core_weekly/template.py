@@ -370,12 +370,13 @@ Happy contributin' everyone!
         """
         authors = []
         for item in items:
-            authors.append(
-                self.author_line(
-                    author_name=item['user']['login'],
-                    author_url=item['user']['html_url']
-                )
+            author = self.author_line(
+                author_name=item['user']['login'],
+                author_url=item['user']['html_url']
             )
+
+            if author not in authors:
+                authors.append(author)
 
         return ', '.join(authors)
 
