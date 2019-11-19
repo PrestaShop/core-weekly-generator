@@ -43,17 +43,30 @@ CORE_TEAM = (
 # List of PrestaShop project repositories
 #
 PROJECTS = {
+    # tools and libs
     'QANightlyResults': 'QA nightly results',
     'TranslationToolsBundle': 'TranslationTools Bundle',
-    'autoupgrade': 'Auto Upgrade module',
-    'classic-rocket': 'Classic-rocket theme',
-    'docker': 'Docker',
+    'docker': 'Docker images',
     'docs': 'Changes in developer documentation',
-    'gamification': 'Gamification module',
     'php-coding-standards': 'PHP Coding Standards',
-    'prestashop-specs': 'PrestaShop Specifications',
     'prestashop-ui-kit': 'Prestashop UI Kit',
+    'core-weekly-generator': 'Core Weekly Generator tool',
+    'TranslationFiles': 'Translation Files repository',
+    'CsaGuzzleBundle': 'CsaGuzzle Bundle (fork)',
+    # modules
+    'ps_shoppingcart': 'Shopping cart module',
+    'ps_emailalerts': 'Email Alerts module',
+    'autoupgrade': 'Auto Upgrade module',
+    'cronjobs': 'Cronjobs module',
+    'productcomments': 'Product Comments module',
     'ps_facetedsearch': 'Faceted search module',
+    'ps_emailsubscription': 'Email subscription module',
+    'pscleaner': 'PS Cleaner module',
+    'gamification': 'Gamification module',
+    # misc
+    'classic-rocket': 'Classic-rocket theme',
+    'ADR': 'Architecture Decision Records repository',
+    'prestashop-specs': 'PrestaShop Specifications',
 }
 
 ##
