@@ -34,13 +34,13 @@ tags:
  - core-weekly
 ---
 
-This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from XXXX to XXXX.
+This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from Monday XX to Sunday XX of MONTH XXXX.
 
 ![Core Weekly banner](/assets/images/2018/12/banner-core-weekly.jpg)
 
 ## General messages
 
-[XXXX]
+[write a nice message here, or remove the "General messages" section]
 
 
 ## A quick update about PrestaShop\'s GitHub issues and pull requests:
@@ -287,14 +287,14 @@ Happy contributin' everyone!
         category_order = CATEGORIES.keys()
 
         for branch, category_items in sorted_core_items.items():
-            content += "\n\n## Code changes in the '" + branch + "' branch (for vXXXX)"
+            content += "\n\n\n## Code changes in the '" + branch + "' branch"
 
             sorted_category_items = self.custom_sort(category_items, category_order)
 
             for category, items in sorted_category_items.items():
                 category_name = CATEGORIES[category] if category in CATEGORIES.keys() else category
 
-                content += "\n\n### " + category_name
+                content += "\n\n\n### " + category_name
                 for item in items:
                     line = '* [#{pull_request_number}]({pull_request_url}): {pull_request_title}{thanks}'.format(
                         pull_request_number=item['number'],
@@ -303,14 +303,14 @@ Happy contributin' everyone!
                         thanks=self.thanks(item['user'])
                     )
 
-                    content += "\n\n" + line
+                    content += "\n" + line
 
         del sorted_results['PrestaShop']
 
-        content += "\n\n## Code changes in modules, themes & tools"
+        content += "\n\n\n## Code changes in modules, themes & tools"
 
         for repository, items in sorted_results.items():
-            content += "\n\n### " + repository
+            content += "\n\n\n### " + repository
             for item in items:
                 line = '* [#{pull_request_number}]({pull_request_url}): {pull_request_title}{thanks}'.format(
                     pull_request_number=item['number'],
@@ -319,7 +319,7 @@ Happy contributin' everyone!
                     thanks=self.thanks(item['user']),
                 )
 
-                content += "\n\n" + line
+                content += "\n" + line
 
         return content
 
@@ -332,7 +332,7 @@ Happy contributin' everyone!
         :rtype: str
 
         """
-        head = "\n\n<hr />\n\n"
+        head = "\n\n\n<hr />\n\n"
         thanks = 'Thank you to the contributors whose pull requests were merged since the last Core Weekly Report: '
 
         return head + thanks + '' + self.get_authors(result['items']) + "!\n"
