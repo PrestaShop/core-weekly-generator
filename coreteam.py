@@ -37,7 +37,7 @@ CORE_TEAM = (
     'matthieu-rolland',   # Matthieu R.
     'Progi1984',          # Franck L.
     'Robin-Fischer-PS',   # Robin F.
-    'samuel-pires',       # Samuel S.
+    'samuel-pires',       # Samuel P.
     'atomiix',            # Thomas B. 
 )
 
