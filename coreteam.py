@@ -39,6 +39,7 @@ CORE_TEAM = (
     'Robin-Fischer-PS',   # Robin F.
     'samuel-pires',       # Samuel P.
     'atomiix',            # Thomas B. 
+    'NeOMakinG',          # Valentin S.
 )
 
 ##
