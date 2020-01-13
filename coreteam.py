@@ -66,6 +66,13 @@ PROJECTS = {
     'ps_emailsubscription': 'Email subscription module',
     'pscleaner': 'PS Cleaner module',
     'gamification': 'Gamification module',
+    'ps_socialfollow': 'Social Follow module',
+    'dashactivity': 'Dashboard Activity module',
+    'ps_newproducts': 'New Products module',
+    'ps_searchbar': 'Search Bar module',
+    'gsitemap': 'Google Sitemap module',
+    'ps_mainmenu': 'Main menu module',
+    'ps_sharebuttons': 'Share Buttons module',
     # misc
     'classic-rocket': 'Classic-rocket theme',
     'ADR': 'Architecture Decision Records repository',
@@ -88,6 +95,7 @@ CATEGORIES = {
 
 CORE_BRANCHES = (
     'develop',
+    '1.7.7.x',
     '1.7.6.x',
     '1.7.5.x',
     '1.7.4.x'
