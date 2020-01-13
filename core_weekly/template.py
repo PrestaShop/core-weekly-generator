@@ -24,7 +24,7 @@ class Template():
         """
         return '''---
 layout: post
-title:  "PrestaShop Core Weekly - Week XXXX of 2019"
+title:  "PrestaShop Core Weekly - Week XXXX of 2020"
 subtitle: "An inside look at the PrestaShop codebase"
 date:   XXXX
 authors: [ PrestaShop ]
