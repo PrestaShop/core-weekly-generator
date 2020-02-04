@@ -40,6 +40,7 @@ CORE_TEAM = (
     'samuel-pires',       # Samuel P.
     'atomiix',            # Thomas B. 
     'NeOMakinG',          # Valentin S.
+    'sowbiba',            # Ibrahima S.
 )
 
 ##
