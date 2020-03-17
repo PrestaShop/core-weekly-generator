@@ -47,37 +47,45 @@ CORE_TEAM = (
 # List of PrestaShop project repositories
 #
 PROJECTS = {
-    # tools and libs
-    'QANightlyResults': 'QA nightly results',
-    'TranslationToolsBundle': 'TranslationTools Bundle',
+  # tools and libs
+    'core-weekly-generator': 'Core Weekly Generator tool',
+    'CsaGuzzleBundle': 'CsaGuzzle Bundle (fork)',
     'docker': 'Docker images',
+    'docker-internal-images': 'Docker internal images',
     'docs': 'Changes in developer documentation',
     'php-coding-standards': 'PHP Coding Standards',
+    'php-dev-tools': 'PHP Developer Tools',
     'prestashop-ui-kit': 'Prestashop UI Kit',
-    'core-weekly-generator': 'Core Weekly Generator tool',
+    'QANightlyResults': 'QA nightly results',
     'TranslationFiles': 'Translation Files repository',
-    'CsaGuzzleBundle': 'CsaGuzzle Bundle (fork)',
-    # modules
-    'ps_shoppingcart': 'Shopping cart module',
-    'ps_emailalerts': 'Email Alerts module',
+    'TranslationToolsBundle': 'TranslationTools Bundle',
+  # modules
     'autoupgrade': 'Auto Upgrade module',
     'cronjobs': 'Cronjobs module',
-    'productcomments': 'Product Comments module',
-    'ps_facetedsearch': 'Faceted search module',
-    'ps_emailsubscription': 'Email subscription module',
-    'pscleaner': 'PS Cleaner module',
-    'gamification': 'Gamification module',
-    'ps_socialfollow': 'Social Follow module',
     'dashactivity': 'Dashboard Activity module',
-    'ps_newproducts': 'New Products module',
-    'ps_searchbar': 'Search Bar module',
+    'example-modules': 'Example modules',
+    'gamification': 'Gamification module',
     'gsitemap': 'Google Sitemap module',
+    'productcomments': 'Product Comments module',
+    'ps_contactinfo': 'Contact informations module',
+    'ps_emailalerts': 'Email Alerts module',
+     'ps_emailsubscription': 'Email subscription module',
+    'ps_facetedsearch': 'Faceted search module',
+    'ps_googleanalytics': 'Google Analytics module',
     'ps_mainmenu': 'Main menu module',
+    'ps_newproducts': 'New Products module',
+    'ps_reminder': 'Reminder module',
+    'ps_searchbar': 'Search Bar module',
     'ps_sharebuttons': 'Share Buttons module',
-    # misc
-    'classic-rocket': 'Classic-rocket theme',
+    'ps_shoppingcart': 'Shopping cart module',
+    'ps_socialfollow': 'Social Follow module',
+    'pscleaner': 'PS Cleaner module',
+    'statsregistrations': 'Registrations statistics modules'
+  # misc
     'ADR': 'Architecture Decision Records repository',
+    'classic-rocket': 'Classic-rocket theme',
     'prestashop-specs': 'PrestaShop Specifications',
+    'traces': 'Traces',
 }
 
 ##
