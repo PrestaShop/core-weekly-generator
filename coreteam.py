@@ -86,6 +86,7 @@ PROJECTS = {
     'classic-rocket': 'Classic-rocket theme',
     'prestashop-specs': 'PrestaShop Specifications',
     'traces': 'Traces',
+    'TopContributors': 'PrestaShop contributors website"
 }
 
 ##
