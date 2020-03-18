@@ -69,7 +69,7 @@ PROJECTS = {
     'productcomments': 'Product Comments module',
     'ps_contactinfo': 'Contact informations module',
     'ps_emailalerts': 'Email Alerts module',
-     'ps_emailsubscription': 'Email subscription module',
+    'ps_emailsubscription': 'Email subscription module',
     'ps_facetedsearch': 'Faceted search module',
     'ps_googleanalytics': 'Google Analytics module',
     'ps_mainmenu': 'Main menu module',
