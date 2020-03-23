@@ -80,6 +80,7 @@ PROJECTS = {
     'ps_shoppingcart': 'Shopping cart module',
     'ps_socialfollow': 'Social Follow module',
     'pscleaner': 'PS Cleaner module',
+    'ps_wirepayment': ' Wire payment module',
     'statsregistrations': 'Registrations statistics modules',
   # misc
     'ADR': 'Architecture Decision Records repository',
