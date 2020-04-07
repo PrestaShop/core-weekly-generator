@@ -72,7 +72,7 @@ PROJECTS = {
     'gamification': 'Gamification module',
     'gridhtml': 'Simple HTML table display',
     'gsitemap': 'Google Sitemap module',
-    'graphnvd3'; 'NVD3 Charts',
+    'graphnvd3': 'NVD3 Charts',
     'open-source': 'The PrestaShop open source project',
     'pagesnotfound': 'Pages not found',
     'productcomments': 'Product Comments module',
