@@ -62,6 +62,7 @@ PROJECTS = {
   # modules
     'autoupgrade': 'Auto Upgrade module',
     'blockreassurance': 'Customer reassurance block',
+    'blockwishlist': 'Wishlist block',
     'contactform': 'Contact Form',
     'cronjobs': 'Cronjobs module',
     'dashactivity': 'Dashboard Activity module',
