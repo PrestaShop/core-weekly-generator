@@ -1,6 +1,6 @@
 # Core Weekly report generator
 
-Core weekly generator is a micro Python 3.4+ CLI application that is able to generate a list of merged PR
+Core weekly generator is a micro Python 3.6+ CLI application that is able to generate a list of merged PR
 for a selected list of branches in an interval of dates.
 
 ## Installation
