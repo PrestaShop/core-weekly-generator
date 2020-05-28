@@ -77,7 +77,7 @@ PROJECTS = {
     'graphnvd3': 'NVD3 Charts',
     'issuebot': 'Issue Bot',
     'open-source': 'The PrestaShop open source project',
-    'nightly-board': '
+    'nightly-board': 'Nightly board',
     'pagesnotfound': 'Pages not found',
     'productcomments': 'Product Comments module',
     'ps_banner': 'Banner',
