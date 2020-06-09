@@ -84,6 +84,7 @@ PROJECTS = {
     'productcomments': 'Product Comments module',
     'ps_banner': 'Banner',
     'ps_buybuttonlite': 'Buy button lite',
+    'ps_cashondelivery': 'Cash on delivery',
     'ps_categoryproducts': 'Products in the same category',
     'ps_categorytree': 'Category tree links',
     'ps_checkpayment': 'Check payment',
