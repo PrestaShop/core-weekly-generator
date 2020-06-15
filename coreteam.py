@@ -51,6 +51,7 @@ PROJECTS = {
     'core-weekly-generator': 'Core Weekly Generator tool',
     'CsaGuzzleBundle': 'CsaGuzzle Bundle (fork)',
     'docker': 'Docker images',
+    'docker-ci': 'PrestaShop on Docker',
     'docker-internal-images': 'Docker internal images',
     'docs': 'Changes in developer documentation',
     'php-coding-standards': 'PHP Coding Standards',
