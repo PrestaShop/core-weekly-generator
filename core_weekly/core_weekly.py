@@ -21,18 +21,30 @@ class CoreWeekly():
 
         """
         self.year = None
+        self.month = None
         self.week = None
         self.date_range = args.date
         if args.week is not None:
             self.date_range = self.get_date_range_from_week(args.week, args.year)
 
         if self.date_range:
+            self.initialize_time_parameters(self.date_range)
             self.report = Report(self.date_range, args.no_cache, args.debug)
             self.parser = Parser()
             self.template = Template(self.parser)
 
         self.is_debug = args.debug
         self.directory = Path(__file__).resolve().parents[1] / 'var'
+
+    def initialize_time_parameters(self, date_range):
+
+        split = date_range.split('..')
+        first_date = datetime.datetime.strptime(split[0], "%Y-%m-%d").date()
+
+        self.year = first_date.strftime('%Y')
+        self.month = first_date.strftime('%B')
+        self.week = first_date.strftime('%W')
+
 
     def get_date_range_from_week(self, week, year):
         """Get data range from week number
@@ -53,6 +65,8 @@ class CoreWeekly():
         first_day = datetime.datetime.strptime(f'{year}-W{int(week)-1}-1', "%Y-W%W-%w").date()
         last_day = first_day + datetime.timedelta(days=6.9)
 
+        self.month = datetime.datetime.strptime(f'{year}-W{int(week)-1}-1', "%Y-W%W-%w").date().strftime('%B')
+
         return str(first_day) + '..' + str(last_day)
 
     def generate(self):
@@ -69,7 +83,7 @@ class CoreWeekly():
         opened_pull_requests = self.report.get_opened_pull_requests()
         closed_pull_requests = self.report.get_closed_pull_requests()
 
-        content = self.template.headers()
+        content = self.template.headers(self.week, self.month,self.year)
 
         if self.is_debug:
             content += self.template.opened_issues(opened_issues)

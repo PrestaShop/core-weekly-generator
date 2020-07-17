@@ -4,7 +4,7 @@ from coreteam import CORE_BRANCHES
 from coreteam import CORE_TEAM
 from coreteam import CATEGORIES
 from collections import OrderedDict
-
+from datetime import date
 
 class Template():
     def __init__(self, parser):
@@ -15,26 +15,30 @@ class Template():
         """
         self.parser = parser
 
-    def headers(self):
+    def headers(self, week, month, year):
         """Default header
 
         :returns: Original headers
         :rtype: str
 
         """
-        return '''---
+
+        today = str(date.today())
+
+        template = '''---
 layout: post
-title:  "PrestaShop Core Weekly - Week XXXX of 2020"
+title:  "PrestaShop Core Weekly - Week WWWW of YYYY"
 subtitle: "An inside look at the PrestaShop codebase"
-date:   XXXX
+date:   DDDD
 authors: [ PrestaShop ]
 image: /assets/images/2017/04/core_weekly_banner.jpg
+twitter_image: /assets/images/theme/banner-core-weekly.jpg
 icon: icon-calendar
 tags:
  - core-weekly
 ---
 
-This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from Monday XX to Sunday XX of MONTH XXXX.
+This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from Monday AA to Sunday ZZ of MMMM YYYY.
 
 ![Core Weekly banner](/assets/images/2018/12/banner-core-weekly.jpg)
 
@@ -45,6 +49,15 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
 
 ## A quick update about PrestaShop\'s GitHub issues and pull requests:
 '''
+
+        result = template.replace("DDDD", today)
+        result = result.replace("WWWW", str(week))
+        result = result.replace("YYYY", str(year))
+        result = result.replace("MMMM", month)
+
+
+
+        return result
 
     def footers(self):
         """Default footer
