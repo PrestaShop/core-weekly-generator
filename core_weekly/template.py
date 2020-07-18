@@ -15,7 +15,7 @@ class Template():
         """
         self.parser = parser
 
-    def headers(self, week, month, year):
+    def headers(self, first_day_number, last_day_number, week, month, year):
         """Default header
 
         :returns: Original headers
@@ -55,9 +55,21 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
         result = result.replace("YYYY", str(year))
         result = result.replace("MMMM", month)
 
-
+        result = result.replace("AA", self.format_day_number(first_day_number))
+        result = result.replace("ZZ", self.format_day_number(last_day_number))
 
         return result
+
+    def format_day_number(self, day_number):
+
+        if (day_number == '1'):
+            return '1st'
+        elif (day_number == '2'):
+            return '2nd'
+        elif (day_number == '3'):
+            return '3rd'
+        else:
+            return day_number + 'th'
 
     def footers(self):
         """Default footer
