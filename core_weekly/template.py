@@ -27,9 +27,9 @@ class Template():
 
         template = '''---
 layout: post
-title:  "PrestaShop Core Weekly - Week WWWW of YYYY"
+title:  "PrestaShop Core Weekly - Week {week} of {year}"
 subtitle: "An inside look at the PrestaShop codebase"
-date:   DDDD
+date:   {today}
 authors: [ PrestaShop ]
 image: /assets/images/2017/04/core_weekly_banner.jpg
 twitter_image: /assets/images/theme/banner-core-weekly.jpg
@@ -38,7 +38,7 @@ tags:
  - core-weekly
 ---
 
-This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from Monday AA to Sunday ZZ of MMMM YYYY.
+This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from Monday {first_day} to Sunday {last_day} of {month} {year}.
 
 ![Core Weekly banner](/assets/images/2018/12/banner-core-weekly.jpg)
 
@@ -50,15 +50,14 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
 ## A quick update about PrestaShop\'s GitHub issues and pull requests:
 '''
 
-        result = template.replace("DDDD", today)
-        result = result.replace("WWWW", str(week))
-        result = result.replace("YYYY", str(year))
-        result = result.replace("MMMM", month)
-
-        result = result.replace("AA", self.format_day_number(first_day_number))
-        result = result.replace("ZZ", self.format_day_number(last_day_number))
-
-        return result
+        return template.format(
+            today=today,
+            week=str(week),
+            month=month,
+            year=str(year),
+            first_day=self.format_day_number(first_day_number),
+            last_day=self.format_day_number(last_day_number)
+        )
 
     def format_day_number(self, day_number):
 
