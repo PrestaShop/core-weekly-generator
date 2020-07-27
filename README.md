@@ -67,3 +67,8 @@ When stats are downloaded, you can compute them.
  ```
 
 You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder categories, repositories, put the full category names instead of TE or CO) before publishing the article.
+
+## Troubleshooting
+
+Be aware that data fetched from GitHub is stored into a local sqlite cache file ! This might create issues when submitting code changes to the tool logic.
+
