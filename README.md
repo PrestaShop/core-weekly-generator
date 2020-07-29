@@ -70,5 +70,4 @@ You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder catego
 
 ## Troubleshooting
 
-Be aware that data fetched from GitHub is stored into a local sqlite cache file ! This might create issues when submitting code changes to the tool logic.
-
+Be aware that data fetched from GitHub is stored into a local sqlite cache file! This might create issues when submitting code changes to the tool logic.
