@@ -61,15 +61,12 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
 
     def format_day_number(self, day_number):
 
-        if (day_number == '1'):
-            return '1st'
-        elif (day_number == '2'):
-            return '2nd'
-        elif (day_number == '3'):
-            return '3rd'
-        else:
-            return day_number + 'th'
-
+        day_numbers = {
+          1: '1st',
+          2: '2nd',
+          3: '3rd',
+        }
+        return day_numbers.get(day_number, day_number + 'th')
     def footers(self):
         """Default footer
 
