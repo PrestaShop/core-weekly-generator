@@ -59,6 +59,9 @@ class CoreWeekly():
         :rtype: str
 
         """
+
+        category_blacklist = ['ME', 'PM']
+
         opened_issues = self.report.get_opened_issues()
         closed_issues = self.report.get_closed_issues()
         fixed_issues = self.report.get_fixed_issues()
@@ -94,7 +97,7 @@ class CoreWeekly():
             merged_pull_requests,
             self.date_range
         )
-        content += self.template.build_merged_pull_requests(merged_pull_requests)
+        content += self.template.build_merged_pull_requests(merged_pull_requests, category_blacklist)
 
         content += self.template.build_contributors_list(merged_pull_requests)
         content += self.template.footers()

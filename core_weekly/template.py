@@ -279,7 +279,7 @@ Happy contributin' everyone!
 
         return sorted_dict
 
-    def build_merged_pull_requests(self, result):
+    def build_merged_pull_requests(self, result, category_blacklist):
         """Build merged pull requests
 
         :param result: GitHub Response
@@ -305,6 +305,9 @@ Happy contributin' everyone!
 
             for category, items in sorted_category_items.items():
                 category_name = CATEGORIES[category] if category in CATEGORIES.keys() else category
+
+                if (category in category_blacklist):
+                    continue;
 
                 content += "\n\n\n### " + category_name
                 for item in items:
