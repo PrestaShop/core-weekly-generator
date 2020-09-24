@@ -1,5 +1,8 @@
 __pycache__
 cache.sqlite
+.eggs/
+build/
+PrestaShop_Core_Weekly.egg-info/
 
 .DS_Store
 node_modules

@@ -71,3 +71,19 @@ You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder catego
 ## Troubleshooting
 
 Be aware that data fetched from GitHub is stored into a local sqlite cache file! This might create issues when submitting code changes to the tool logic.
+
+## Running tests
+
+Install dependencies:
+
+```bash
+$ ./setup.py test
+```
+
+To run unit tests:
+
+```bash
+$ ./setup.py nosetests
+$ # or
+$ nosetests
+```
