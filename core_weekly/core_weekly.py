@@ -24,8 +24,6 @@ class CoreWeekly():
         self.year = None
         self.month = None
         self.week = None
-        self.first_day_number = None
-        self.last_day_number = None
 
         self.date_range = args.date
         if args.week is not None:
@@ -43,16 +41,10 @@ class CoreWeekly():
     def initialize_time_parameters(self, date_range):
 
         split = date_range.split('..')
-        first_date = datetime.datetime.strptime(split[0], "%Y-%m-%d").date()
         last_date = datetime.datetime.strptime(split[1], "%Y-%m-%d").date()
 
-        if self.first_day_number is None:
-            self.first_day_number = first_date.strftime('%-d')
-        if self.last_day_number is None:
-            self.last_day_number = last_date.strftime('%-d')
-
         if self.year is None:
-            self.year = first_date.strftime('%Y')
+            self.year = last_date.strftime('%Y')
         
         if self.month is None:
             self.month = last_date.strftime('%B')
@@ -75,7 +67,7 @@ class CoreWeekly():
         opened_pull_requests = self.report.get_opened_pull_requests()
         closed_pull_requests = self.report.get_closed_pull_requests()
 
-        content = self.template.headers(self.first_day_number, self.last_day_number, self.week, self.month,self.year)
+        content = self.template.headers(DateUtil().compute_from_day_to_day_statement(self.date_range), self.week,self.year)
 
         if self.is_debug:
             content += self.template.opened_issues(opened_issues)

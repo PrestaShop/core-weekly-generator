@@ -49,3 +49,35 @@ class DateUtil():
         self.month = datetime.datetime.strptime(f'{year}-W{int(week)-1}-1', "%Y-W%W-%w").date().strftime('%B')
 
         return str(first_day) + '..' + str(last_day)
+
+    def format_day_number(self, day_number):
+        day_numbers = {
+          1: '1st',
+          2: '2nd',
+          3: '3rd',
+        }
+        return day_numbers.get(day_number, str(day_number) + 'th')
+
+    def compute_from_day_to_day_statement(self, date_range):
+
+        split = date_range.split('..')
+        first_date = datetime.datetime.strptime(split[0], "%Y-%m-%d").date()
+        last_date = datetime.datetime.strptime(split[1], "%Y-%m-%d").date()
+
+        first_day_number = int(first_date.strftime('%-d'))
+        last_day_number = int(last_date.strftime('%-d'))
+        first_month_number = first_date.strftime('%B')
+        last_month_number = last_date.strftime('%B')
+        first_year_number = first_date.strftime('%Y')
+        last_year_number = last_date.strftime('%Y')
+
+        last_day_part = self.format_day_number(last_day_number) + ' of '+ last_month_number + ' ' + last_year_number
+        first_day_part = self.format_day_number(first_day_number)
+        if first_month_number != last_month_number:
+            first_day_part = first_day_part + ' of ' + first_month_number
+        if first_year_number != last_year_number:
+            first_day_part = first_day_part + ' ' + first_year_number
+
+        return 'from Monday ' + first_day_part + ' to Sunday ' + last_day_part
+
+        
