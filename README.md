@@ -1,5 +1,7 @@
 # Core Weekly report generator
 
+![Core Weekly Integration tests](https://github.com/prestashop/core-weekly-generator/workflows/Core%20Weekly%20Integration%20tests/badge.svg)
+
 Core weekly generator is a micro Python 3.6+ CLI application that is able to generate a list of merged PR
 for a selected list of branches in an interval of dates.
 
