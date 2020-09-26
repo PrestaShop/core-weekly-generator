@@ -1,4 +1,4 @@
-name: Run Core Weekly
+name: Core Weekly Integration tests
 
 on: [push]
 
