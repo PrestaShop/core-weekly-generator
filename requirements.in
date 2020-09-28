@@ -2,3 +2,8 @@ pip-tools
 argparse
 requests
 requests_cache
+coverage
+pycodestyle
+flake8
+nose
+mock
