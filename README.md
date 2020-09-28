@@ -77,7 +77,7 @@ Be aware that data fetched from GitHub is stored into a local sqlite cache file!
 Install dependencies:
 
 ```bash
-$ ./setup.py test
+$ ./setup.py install
 ```
 
 To run unit tests:
