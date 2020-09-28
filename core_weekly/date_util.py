@@ -17,13 +17,13 @@ class DateUtil():
 
         self.date_range = None
 
-    def get_date_range_from_week(self, week, year):
+    def get_date_range_from_week(self, week, year=None):
         """Get data range from week number
 
         :param week: Week number
         :type week: str
         :param year: Year
-        :type year: str
+        :type year: str, optional
         :returns: A date range
         :rtype: str
         """

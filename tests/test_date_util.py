@@ -1,5 +1,6 @@
 import unittest
 from core_weekly.date_util import DateUtil
+import datetime
 
 
 class TestDateUtil(unittest.TestCase):
@@ -10,6 +11,11 @@ class TestDateUtil(unittest.TestCase):
     def test_get_date_range_from_week_38_2020(self):
         date_util = DateUtil()
         self.assertEqual(date_util.get_date_range_from_week(38, 2020), '2020-09-14..2020-09-20')
+
+    def test_get_date_range_from_week_38(self):
+        date_util = DateUtil()
+        now = datetime.datetime.now()
+        self.assertEqual(date_util.get_date_range_from_week(15, None), '{}-04-06..{}-04-12'.format(now.year, now.year))
 
     def test_format_day_number_2nd(self):
         date_util = DateUtil()
