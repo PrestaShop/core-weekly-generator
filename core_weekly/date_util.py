@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .report import Report
-from .template import Template
-from .parser import Parser
-from pathlib import Path
 import datetime
-import json
 import logging
-import re
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +16,6 @@ class DateUtil():
         self.last_day_number = None
 
         self.date_range = None
-
 
     def get_date_range_from_week(self, week, year):
         """Get data range from week number
@@ -52,10 +45,11 @@ class DateUtil():
 
     def format_day_number(self, day_number):
         day_numbers = {
-          1: '1st',
-          2: '2nd',
-          3: '3rd',
+            1: '1st',
+            2: '2nd',
+            3: '3rd',
         }
+
         return day_numbers.get(day_number, str(day_number) + 'th')
 
     def compute_from_day_to_day_statement(self, date_range):
@@ -71,13 +65,22 @@ class DateUtil():
         first_year_number = first_date.strftime('%Y')
         last_year_number = last_date.strftime('%Y')
 
-        last_day_part = self.format_day_number(last_day_number) + ' of '+ last_month_number + ' ' + last_year_number
+        last_day_part = '{} of {} {}'.format(
+            self.format_day_number(last_day_number),
+            last_month_number,
+            last_year_number
+        )
+
         first_day_part = self.format_day_number(first_day_number)
         if first_month_number != last_month_number:
-            first_day_part = first_day_part + ' of ' + first_month_number
+            first_day_part = '{} of {}'.format(
+                first_day_part,
+                first_month_number
+            )
         if first_year_number != last_year_number:
             first_day_part = first_day_part + ' ' + first_year_number
 
-        return 'from Monday ' + first_day_part + ' to Sunday ' + last_day_part
-
-        
+        return 'from Monday {} to Sunday {}'.format(
+            first_day_part,
+            last_day_part
+        )

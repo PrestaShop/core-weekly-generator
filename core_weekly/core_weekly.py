@@ -45,13 +45,12 @@ class CoreWeekly():
 
         if self.year is None:
             self.year = last_date.strftime('%Y')
-        
+
         if self.month is None:
             self.month = last_date.strftime('%B')
 
         if self.week is None:
-            self.week = (last_date++ datetime.timedelta(days=6.9)).strftime('%W')
-
+            self.week = (last_date + datetime.timedelta(days=6.9)).strftime('%W')
 
     def generate(self):
         """Generate Core weekly markdown content
@@ -67,7 +66,11 @@ class CoreWeekly():
         opened_pull_requests = self.report.get_opened_pull_requests()
         closed_pull_requests = self.report.get_closed_pull_requests()
 
-        content = self.template.headers(DateUtil().compute_from_day_to_day_statement(self.date_range), self.week,self.year)
+        content = self.template.headers(
+            DateUtil().compute_from_day_to_day_statement(self.date_range),
+            self.week,
+            self.year
+        )
 
         if self.is_debug:
             content += self.template.opened_issues(opened_issues)

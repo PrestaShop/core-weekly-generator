@@ -6,6 +6,7 @@ from coreteam import CATEGORIES
 from collections import OrderedDict
 from datetime import date
 
+
 class Template():
     def __init__(self, parser):
         """Constructor

@@ -21,4 +21,4 @@ jobs:
         python setup.py install
     - name: Run tests
       run: |
-        nosetests
+        flake8

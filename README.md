@@ -37,19 +37,19 @@ optional arguments:
 Generate Core Weekly with a date range
 
 ```bash
- $ python ./core-weekly.py --date 2019-08-05..2019-08-11 > my-core-weekly.md
+ $ python core-weekly.py --date 2019-08-05..2019-08-11 > my-core-weekly.md
  ```
 
 Or easier by specifing a week number
 
 ```bash
- $ python ./core-weekly.py --week 11 > my-core-weekly.md
+ $ python core-weekly.py --week 11 > my-core-weekly.md
  ```
 
  And if you want the same week but in 2018
 
 ```bash
- $ python ./core-weekly.py --year 2018 --week 11 > my-core-weekly.md
+ $ python core-weekly.py --year 2018 --week 11 > my-core-weekly.md
  ```
 
 ### Stats
@@ -57,13 +57,13 @@ Or easier by specifing a week number
 Stats are generated and saved under `var` directory.
 
 ```bash
- $ python ./core-weekly.py --year 2018 --week 11 --stats
+ $ python core-weekly.py --year 2018 --week 11 --stats
  ```
 
 When stats are downloaded, you can compute them.
 
 ```bash
- $ python ./core-weekly.py --compute
+ $ python core-weekly.py --compute
  ```
 
 You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder categories, repositories, put the full category names instead of TE or CO) before publishing the article.
