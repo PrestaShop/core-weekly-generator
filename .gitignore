@@ -1,7 +1,8 @@
 __pycache__
 cache.sqlite
 .eggs/
-build/
+.coverage
+cover
 PrestaShop_Core_Weekly.egg-info/
 
 .DS_Store
