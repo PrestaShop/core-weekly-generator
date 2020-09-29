@@ -105,6 +105,7 @@ PROJECTS = {
     'ps_featuredproducts': 'Featured products module',
     'ps_googleanalytics': 'Google Analytics module',
     'ps_imageslider': 'Image slider module',
+    'ps_legalcompliance': 'Legal Compliance',
     'ps_languageselector': 'Language selector module',
     'ps_linklist': 'Links list module',
     'ps_livetranslation': 'Live translation module',
