@@ -6,6 +6,7 @@ from coreteam import CATEGORIES
 from collections import OrderedDict
 from datetime import date
 
+
 class Template():
     def __init__(self, parser):
         """Constructor
@@ -15,7 +16,7 @@ class Template():
         """
         self.parser = parser
 
-    def headers(self, first_day_number, last_day_number, week, month, year):
+    def headers(self, from_day_to_day_statement, week, year):
         """Default header
 
         :returns: Original headers
@@ -38,7 +39,7 @@ tags:
  - core-weekly
 ---
 
-This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase from Monday {first_day} to Sunday {last_day} of {month} {year}.
+This edition of the Core Weekly report highlights changes in PrestaShop\'s core codebase {from_day_to_day_statement}.
 
 ![Core Weekly banner](/assets/images/2018/12/banner-core-weekly.jpg)
 
@@ -53,20 +54,10 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
         return template.format(
             today=today,
             week=str(week),
-            month=month,
             year=str(year),
-            first_day=self.format_day_number(first_day_number),
-            last_day=self.format_day_number(last_day_number)
+            from_day_to_day_statement=from_day_to_day_statement
         )
 
-    def format_day_number(self, day_number):
-
-        day_numbers = {
-          1: '1st',
-          2: '2nd',
-          3: '3rd',
-        }
-        return day_numbers.get(day_number, day_number + 'th')
     def footers(self):
         """Default footer
 

@@ -38,7 +38,7 @@ CORE_TEAM = (
     'Progi1984',          # Franck L.
     'Robin-Fischer-PS',   # Robin F.
     'samuel-pires',       # Samuel P.
-    'atomiix',            # Thomas B. 
+    'atomiix',            # Thomas B.
     'NeOMakinG',          # Valentin S.
     'sowbiba',            # Ibrahima S.
 )
@@ -47,7 +47,7 @@ CORE_TEAM = (
 # List of PrestaShop project repositories
 #
 PROJECTS = {
-  # tools and libs
+    # tools and libs
     'core-weekly-generator': 'Core Weekly Generator tool',
     'CsaGuzzleBundle': 'CsaGuzzle Bundle (fork)',
     'docker': 'Docker images',
@@ -67,7 +67,7 @@ PROJECTS = {
     'PrestaShop-webservice-lib': 'Webservices PHP Client',
     'stylelint-config': 'stylelint configuration',
     'eslint-config': 'eslint configuration',
-  # modules
+    # modules
     'autoupgrade': 'Auto Upgrade module',
     'blockreassurance': 'Customer reassurance block module',
     'blockwishlist': 'Wishlist block module',
@@ -148,7 +148,7 @@ PROJECTS = {
     'vatnumber': 'European VAT number module',
     'watermark': 'Watermark module',
     'welcome': 'OnBoarding module',
-  # misc
+    # misc
     'ADR': 'Architecture Decision Records repository',
     'classic-rocket': 'Classic-rocket theme',
     'prestashop-specs': 'PrestaShop Specifications',

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from .report import Report
 from .template import Template
 from .parser import Parser
+from .date_util import DateUtil
 from pathlib import Path
 import datetime
 import json
@@ -23,12 +24,10 @@ class CoreWeekly():
         self.year = None
         self.month = None
         self.week = None
-        self.first_day_number = None
-        self.last_day_number = None
 
         self.date_range = args.date
         if args.week is not None:
-            self.date_range = self.get_date_range_from_week(args.week, args.year)
+            self.date_range = DateUtil().get_date_range_from_week(args.week, args.year)
 
         if self.date_range:
             self.initialize_time_parameters(self.date_range)
@@ -39,53 +38,19 @@ class CoreWeekly():
         self.is_debug = args.debug
         self.directory = Path(__file__).resolve().parents[1] / 'var'
 
-    def get_date_range_from_week(self, week, year):
-        """Get data range from week number
-
-        :param week: Week number
-        :type week: str
-        :param year: Year
-        :type year: str
-        :returns: A date range
-        :rtype: str
-        """
-        if year is None:
-            year = datetime.datetime.now().year
-
-        self.year = year
-        self.week = week
-
-        first_day = datetime.datetime.strptime(f'{year}-W{int(week)-1}-1', "%Y-W%W-%w").date()
-        last_day = first_day + datetime.timedelta(days=6.9)
-
-        self.first_day_number = first_day.strftime('%-d')
-        self.last_day_number = last_day.strftime('%-d')
-
-        self.month = datetime.datetime.strptime(f'{year}-W{int(week)-1}-1', "%Y-W%W-%w").date().strftime('%B')
-
-        return str(first_day) + '..' + str(last_day)
-
-
     def initialize_time_parameters(self, date_range):
 
         split = date_range.split('..')
-        first_date = datetime.datetime.strptime(split[0], "%Y-%m-%d").date()
         last_date = datetime.datetime.strptime(split[1], "%Y-%m-%d").date()
 
-        if self.first_day_number is None:
-            self.first_day_number = first_date.strftime('%-d')
-        if self.last_day_number is None:
-            self.last_day_number = last_date.strftime('%-d')
-
         if self.year is None:
-            self.year = first_date.strftime('%Y')
-        
+            self.year = last_date.strftime('%Y')
+
         if self.month is None:
             self.month = last_date.strftime('%B')
 
         if self.week is None:
-            self.week = (last_date++ datetime.timedelta(days=6.9)).strftime('%W')
-
+            self.week = (last_date + datetime.timedelta(days=6.9)).strftime('%W')
 
     def generate(self):
         """Generate Core weekly markdown content
@@ -101,7 +66,11 @@ class CoreWeekly():
         opened_pull_requests = self.report.get_opened_pull_requests()
         closed_pull_requests = self.report.get_closed_pull_requests()
 
-        content = self.template.headers(self.first_day_number, self.last_day_number, self.week, self.month,self.year)
+        content = self.template.headers(
+            DateUtil().compute_from_day_to_day_statement(self.date_range),
+            self.week,
+            self.year
+        )
 
         if self.is_debug:
             content += self.template.opened_issues(opened_issues)
