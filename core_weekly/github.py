@@ -87,7 +87,7 @@ class GitHub():
         data = resp.json()
 
         if resp.status_code != 200:
-            # Something wen wrong, retry
+            # Something went wrong, retry
             time.sleep(self.sleep_time)
             GitHub.retries += 1
             if GitHub.retries >= 10:
