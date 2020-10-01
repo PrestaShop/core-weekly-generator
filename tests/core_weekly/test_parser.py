@@ -42,4 +42,3 @@ class TestParser(unittest.TestCase):
 
         '''
         self.assertEqual(parser.extract_core_category(payload), 'BO')
-
