@@ -63,10 +63,13 @@ PROJECTS = {
     'vagrant': 'PrestaShop Virtual Machine',
     'decimal': 'Decimal',
     'example-modules': 'Example modules',
+    'example_module_mailtheme': 'Mail theme example',
     'issuebot': 'Issues Bot',
     'PrestaShop-webservice-lib': 'Webservices PHP Client',
     'stylelint-config': 'stylelint configuration',
     'eslint-config': 'eslint configuration',
+    'jquery.live-polyfill': 'jQuery Live Polyfill library',
+    'stylelint-browser-compatibility': 'Stylelint browser compatibility plugin',
     # modules
     'autoupgrade': 'Auto Upgrade module',
     'blockreassurance': 'Customer reassurance block module',
@@ -148,6 +151,8 @@ PROJECTS = {
     'vatnumber': 'European VAT number module',
     'watermark': 'Watermark module',
     'welcome': 'OnBoarding module',
+    'ps_carriercomparison': 'Carriers comparison module',
+    'ps_qualityassurance': 'Quality Assurance module',
     # misc
     'ADR': 'Architecture Decision Records repository',
     'classic-rocket': 'Classic-rocket theme',
