@@ -17,11 +17,12 @@ class Parser:
 
         """
         return re.search(
-            r'(?:\|\s+{}\?\s+\|\s+)({})\s+'.format(
+            r'^(?:\|\s+{}\?[ ]*\|[ ]*)({})?[ ]*$'.format(
                 key,
                 regex
             ),
-            body
+            body,
+            re.MULTILINE
         )
 
     def extract_core_category(self, body):
