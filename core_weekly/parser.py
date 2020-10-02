@@ -69,7 +69,7 @@ class Parser:
         :type body: str
         :param raw: Translate if raw is False, otherwise returns the urlvalue
         :type raw: bool
-        :returns: Returns reposutory if possible, otherwise the url
+        :returns: Returns repository if possible, otherwise the url
         :rtype: str
 
         """

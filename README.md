@@ -54,6 +54,10 @@ Or easier by specifing a week number
  $ python core-weekly.py --year 2018 --week 11 > my-core-weekly.md
  ```
 
+The output template is almost ready to be published. What you might add manually is:
+- weekly releases of prestashop projects
+- a message targeting developers
+
 ### Stats
 
 Stats are generated and saved under `var` directory.
@@ -67,8 +71,6 @@ When stats are downloaded, you can compute them.
 ```bash
  $ python core-weekly.py --compute
  ```
-
-You need to do a bit of polishing (fill in the `[XXXX]` sections, reorder categories, repositories, put the full category names instead of TE or CO) before publishing the article.
 
 ## Troubleshooting
 
