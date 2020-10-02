@@ -177,6 +177,8 @@ CATEGORIES = {
     'Misc': 'Misc',
 }
 
+CATEGORIES_REJECT_LIST = ['ME', 'PM']
+
 CORE_BRANCHES = (
     'develop',
     '1.7.7.x',

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from coreteam import CORE_BRANCHES
 from coreteam import CORE_TEAM
 from coreteam import CATEGORIES
+from coreteam import CATEGORIES_REJECT_LIST
 from collections import OrderedDict
 from datetime import date
 
@@ -305,6 +306,9 @@ Happy contributin' everyone!
 
             for category, items in sorted_category_items.items():
                 category_name = CATEGORIES[category] if category in CATEGORIES.keys() else category
+
+                if category in CATEGORIES_REJECT_LIST:
+                    continue
 
                 content += "\n\n\n### " + category_name
                 for item in items:
