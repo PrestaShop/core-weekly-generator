@@ -70,6 +70,7 @@ PROJECTS = {
     'eslint-config': 'eslint configuration',
     'jquery.live-polyfill': 'jQuery Live Polyfill library',
     'stylelint-browser-compatibility': 'Stylelint browser compatibility plugin',
+    'mjml-theme-converter': 'MJML Theme Converter',
     # modules
     'autoupgrade': 'Auto Upgrade module',
     'blockreassurance': 'Customer reassurance block module',
@@ -153,6 +154,8 @@ PROJECTS = {
     'welcome': 'OnBoarding module',
     'ps_carriercomparison': 'Carriers comparison module',
     'ps_qualityassurance': 'Quality Assurance module',
+    'ps_brandlist': 'Brands list module',
+    'ps_advertising': 'Advertising module',
     # misc
     'ADR': 'Architecture Decision Records repository',
     'classic-rocket': 'Classic-rocket theme',
