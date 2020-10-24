@@ -48,8 +48,6 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
 
 [write a nice message here, or remove the "General messages" section]
 
-
-## A quick update about PrestaShop\'s GitHub issues and pull requests:
 '''
 
         return template.format(
@@ -58,6 +56,31 @@ This edition of the Core Weekly report highlights changes in PrestaShop\'s core 
             year=str(year),
             from_day_to_day_statement=from_day_to_day_statement
         )
+
+    def last_week_releases(self, releases):
+        """Releases block
+
+        :returns: Last week GitHub releases as a list of links
+        :rtype: str
+
+        """
+        template = '''## Releases
+
+{releases}
+
+'''
+
+        return template.format(releases='\n'.join(releases))
+
+    def weekly_stats_statement(self):
+        """Default Weekly Stats introduction sentence
+
+        :returns: sentence
+        :rtype: str
+
+        """
+        return '''## A quick update about PrestaShop\'s GitHub issues and pull requests:
+'''
 
     def footers(self):
         """Default footer

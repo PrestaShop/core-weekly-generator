@@ -4,6 +4,7 @@ from .report import Report
 from .template import Template
 from .parser import Parser
 from .date_util import DateUtil
+from .github import GitHubClient
 from pathlib import Path
 import datetime
 import json
@@ -31,7 +32,7 @@ class CoreWeekly():
 
         if self.date_range:
             self.initialize_time_parameters(self.date_range)
-            self.report = Report(self.date_range, args.no_cache, args.debug)
+            self.report = Report(self.date_range, args.no_cache, args.debug, args.token)
             self.parser = Parser()
             self.template = Template(self.parser)
 
@@ -65,12 +66,17 @@ class CoreWeekly():
         merged_pull_requests = self.report.get_merged_pull_requests()
         opened_pull_requests = self.report.get_opened_pull_requests()
         closed_pull_requests = self.report.get_closed_pull_requests()
+        last_week_releases = self.report.get_last_week_releases()
 
         content = self.template.headers(
             DateUtil().compute_from_day_to_day_statement(self.date_range),
             self.week,
             self.year
         )
+
+        content += self.template.last_week_releases(last_week_releases)
+
+        content += self.template.weekly_stats_statement()
 
         if self.is_debug:
             content += self.template.opened_issues(opened_issues)

@@ -17,7 +17,7 @@ Display help
 
 ```bash
 $ ./core-weekly.py --help
-usage: core-weekly.py [-h] [--no-cache] [--debug] [--stats] [--year YEAR]
+usage: core-weekly.py [-h] [--no-cache] [--debug] [--stats] [--year YEAR] --token=GITHUB_ACCESS_TOKEN
                       (--date DATE | --week WEEK | --compute)
 
 PrestaShop Core Weekly
