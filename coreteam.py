@@ -164,6 +164,7 @@ PROJECTS = {
     'traces': 'Traces',
     'TopContributors': 'PrestaShop contributors website',
     'open-source': 'The PrestaShop open source project',
+    'test-scenarios': 'PrestaShop test scenarios',
 }
 
 ##
