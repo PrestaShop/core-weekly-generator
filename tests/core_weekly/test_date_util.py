@@ -15,7 +15,7 @@ class TestDateUtil(unittest.TestCase):
 
     def test_get_date_range_from_week_38(self):
         now = datetime.datetime.now()
-        self.assertEqual(self.date_util.get_date_range_from_week(15, None), '{}-04-06..{}-04-12'.format(now.year, now.year))
+        self.assertEqual(self.date_util.get_date_range_from_week(15, None), '{}-04-05..{}-04-11'.format(now.year, now.year))
 
     def test_format_day_number_2nd(self):
         self.assertEqual(self.date_util.format_day_number(2), '2nd')

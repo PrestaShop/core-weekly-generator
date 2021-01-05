@@ -39,7 +39,7 @@ class DateUtil():
         self.first_day_number = first_day.strftime('%-d')
         self.last_day_number = last_day.strftime('%-d')
 
-        self.month = datetime.datetime.strptime(f'{year}-W{int(week)-1}-1', "%Y-W%W-%w").date().strftime('%B')
+        self.month = first_day.strftime('%B')
 
         return str(first_day) + '..' + str(last_day)
 
