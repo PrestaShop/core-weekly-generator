@@ -167,6 +167,7 @@ PROJECTS = {
     'test-scenarios': 'PrestaShop test scenarios',
     'php-ps-info': 'PrestaShop PHP Informations Tool',
     'user-documentation-landing': 'User documentation landing page',
+    'phpstan-prestashop': 'PrestaShop PHPStan extension',
 }
 
 ##
