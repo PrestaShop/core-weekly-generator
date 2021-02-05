@@ -193,3 +193,7 @@ CORE_BRANCHES = (
     '1.7.5.x',
     '1.7.4.x'
 )
+
+BOT_USERS = (
+    'dependabot[bot]',
+)
