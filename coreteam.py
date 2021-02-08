@@ -64,6 +64,7 @@ PROJECTS = {
     'decimal': 'Decimal',
     'example-modules': 'Example modules',
     'example_module_mailtheme': 'Mail theme example',
+    'PrestaShop-modules': 'PrestaShop modules registry',
     'issuebot': 'Issues Bot',
     'PrestaShop-webservice-lib': 'Webservices PHP Client',
     'stylelint-config': 'stylelint configuration',
