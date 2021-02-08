@@ -4,6 +4,7 @@ from coreteam import CORE_BRANCHES
 from coreteam import CORE_TEAM
 from coreteam import CATEGORIES
 from coreteam import CATEGORIES_REJECT_LIST
+from coreteam import BOT_USERS
 from collections import OrderedDict
 from datetime import date
 
@@ -231,6 +232,8 @@ Happy contributin' everyone!
         """
         if user['login'] in CORE_TEAM:
             message = ', by '
+        elif user['login'] in BOT_USERS:
+            message = '. Built by '
         else:
             message = '. Thank you '
 
