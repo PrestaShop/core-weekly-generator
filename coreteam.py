@@ -41,6 +41,7 @@ CORE_TEAM = (
     'atomiix',            # Thomas B.
     'NeOMakinG',          # Valentin S.
     'sowbiba',            # Ibrahima S.
+    'Julievrz',           # Julie V.
 )
 
 ##
