@@ -73,6 +73,7 @@ PROJECTS = {
     'jquery.live-polyfill': 'jQuery Live Polyfill library',
     'stylelint-browser-compatibility': 'Stylelint browser compatibility plugin',
     'mjml-theme-converter': 'MJML Theme Converter',
+    'circuit-breaker': 'Circuit Breaker',
     # modules
     'autoupgrade': 'Auto Upgrade module',
     'blockreassurance': 'Customer reassurance block module',
