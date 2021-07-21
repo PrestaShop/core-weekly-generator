@@ -28,6 +28,7 @@ class CoreWeekly():
         self.date_range = args.date
         if args.week is not None:
             self.date_range = DateUtil().get_date_range_from_week(args.week, args.year)
+            self.week = args.week
 
         if self.date_range:
             self.initialize_time_parameters(self.date_range)
