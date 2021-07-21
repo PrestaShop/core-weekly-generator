@@ -33,7 +33,7 @@ class DateUtil():
         self.year = year
         self.week = week
 
-        first_day = datetime.datetime.strptime(f'{year}-W{int(week)-1}-1', "%Y-W%W-%w").date()
+        first_day = datetime.datetime.strptime(f'{year}-W{int(week)}-1', "%G-W%V-%u").date()
         last_day = first_day + datetime.timedelta(days=6.9)
 
         self.first_day_number = first_day.strftime('%-d')
