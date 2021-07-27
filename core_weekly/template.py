@@ -296,6 +296,10 @@ Happy contributin' everyone!
 
         sorted_results = self.get_repositories(result['items'])
         core_items = sorted_results.get('PrestaShop')
+
+        if (core_items is None):
+            return ''
+
         grouped_core_items = self.sort_core_repositories(core_items)
 
         sorted_core_items = self.custom_sort(grouped_core_items, CORE_BRANCHES)
