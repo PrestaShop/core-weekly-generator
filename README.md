@@ -76,13 +76,21 @@ When stats are downloaded, you can compute them.
 
 Be aware that data fetched from GitHub is stored into a local sqlite cache file! This might create issues when submitting code changes to the tool logic.
 
-## Running tests
+## Code quality
 
 Install dependencies:
 
 ```bash
 $ ./setup.py install
 ```
+
+### Static analysis
+
+```bash
+$ ./setup.py flake8
+```
+
+### Running tests
 
 To run unit tests:
 
