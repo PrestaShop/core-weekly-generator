@@ -28,7 +28,7 @@ optional arguments:
   --debug      Use Debug
   --stats      Print stats report and save it in json file if you specify a
                week number
-  --year YEAR  Specifcy which year you want to use in Week context
+  --year YEAR  Specify which year you want to use in Week context
   --date DATE  Date range
   --week WEEK  Week number
   --compute    Compute data stored in var directory
