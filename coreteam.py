@@ -171,6 +171,7 @@ PROJECTS = {
     'php-ps-info': 'PrestaShop PHP Informations Tool',
     'user-documentation-landing': 'User documentation landing page',
     'phpstan-prestashop': 'PrestaShop PHPStan extension',
+    'contextual-help-api': 'Contextual Help API',
 }
 
 ##
@@ -191,6 +192,7 @@ CATEGORIES_REJECT_LIST = ['ME', 'PM']
 
 CORE_BRANCHES = (
     'develop',
+    '1.7.8.x',
     '1.7.7.x',
     '1.7.6.x',
     '1.7.5.x',
