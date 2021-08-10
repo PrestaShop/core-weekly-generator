@@ -292,7 +292,7 @@ Happy contributin' everyone!
         """
         for key in grouped_data_by_branches:
             if key not in branches:
-                raise Exception('Cannot find branch ' + key + ' in configured branches')
+                raise Exception('Cannot find branch "{}" in configured branches'.format(key))
 
     def build_merged_pull_requests(self, result):
         """Build merged pull requests
