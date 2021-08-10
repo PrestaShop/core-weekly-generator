@@ -288,7 +288,7 @@ Happy contributin' everyone!
         :param grouped_data_by_branches: Data we want to verify
         :type grouped_data_by_branches: dict
         :param branches: Core known branches
-        :type branches: str
+        :type branches: dict
         """
         for key in grouped_data_by_branches:
             if key not in branches:
