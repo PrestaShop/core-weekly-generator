@@ -283,6 +283,17 @@ Happy contributin' everyone!
 
         return sorted_dict
 
+    def verify_no_unknown_branch(self, grouped_data_by_branches, branches):
+        """Verify there is no unknown branch
+        :param grouped_data_by_branches: Data we want to verify
+        :type grouped_data_by_branches: dict
+        :param branches: Core known branches
+        :type branches: dict
+        """
+        for key in grouped_data_by_branches:
+            if key not in branches:
+                raise Exception('Cannot find branch "{}" in configured branches'.format(key))
+
     def build_merged_pull_requests(self, result):
         """Build merged pull requests
 
@@ -301,6 +312,7 @@ Happy contributin' everyone!
             return ''
 
         grouped_core_items = self.sort_core_repositories(core_items)
+        self.verify_no_unknown_branch(grouped_core_items, CORE_BRANCHES)
 
         sorted_core_items = self.custom_sort(grouped_core_items, CORE_BRANCHES)
 
