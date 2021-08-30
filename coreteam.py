@@ -42,6 +42,7 @@ CORE_TEAM = (
     'NeOMakinG',          # Valentin S.
     'sowbiba',            # Ibrahima S.
     'Julievrz',           # Julie V.
+    'kpodemski',          # Krystian Podemski
 )
 
 ##
@@ -54,7 +55,9 @@ PROJECTS = {
     'docker': 'Docker images',
     'docker-ci': 'PrestaShop on Docker',
     'docker-internal-images': 'Docker internal images',
-    'docs': 'Changes in developer documentation',
+    'docs': 'Changes in developer documentation sources',
+    'devdocs-site': 'Changes in developer documentation site',
+    'ps-docs-theme': 'Changes in developer documentation theme',
     'php-coding-standards': 'PHP Coding Standards',
     'php-dev-tools': 'PHP Developer Tools',
     'prestashop-ui-kit': 'Prestashop UI Kit',
