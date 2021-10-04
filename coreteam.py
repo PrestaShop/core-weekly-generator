@@ -175,6 +175,7 @@ PROJECTS = {
     'user-documentation-landing': 'User documentation landing page',
     'phpstan-prestashop': 'PrestaShop PHPStan extension',
     'contextual-help-api': 'Contextual Help API',
+    'psssst': 'Module analyzer',
 }
 
 ##
