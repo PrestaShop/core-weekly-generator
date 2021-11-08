@@ -162,6 +162,7 @@ PROJECTS = {
     'ps_qualityassurance': 'Quality Assurance module',
     'ps_brandlist': 'Brands list module',
     'ps_advertising': 'Advertising module',
+    'ps_viewedproduct': 'Viewed products block module',
     # misc
     'ADR': 'Architecture Decision Records repository',
     'classic-rocket': 'Classic-rocket theme',
@@ -176,6 +177,7 @@ PROJECTS = {
     'phpstan-prestashop': 'PrestaShop PHPStan extension',
     'contextual-help-api': 'Contextual Help API',
     'psssst': 'Module analyzer',
+    'theme-refacto': 'New 8.0.0 Front-office theme',
 }
 
 ##
