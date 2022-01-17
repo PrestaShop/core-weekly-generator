@@ -93,7 +93,7 @@ PROJECTS = {
     'gsitemap': 'Google Sitemap module',
     'graphnvd3': 'NVD3 Charts module',
     'nightly-board': 'Nightly board',
-    'pagesnotfound': 'Pages not found',
+    'pagesnotfound': 'Pages not found module',
     'productcomments': 'Product Comments module',
     'ps_banner': 'Banner module',
     'ps_buybuttonlite': 'Buy button lite module',
@@ -163,6 +163,9 @@ PROJECTS = {
     'ps_brandlist': 'Brands list module',
     'ps_advertising': 'Advertising module',
     'ps_viewedproduct': 'Viewed products block module',
+    'ps_bestsellers': 'Best sellers module',
+    'paymentexample': 'Payment example module',
+    'ps_specials': 'Special offers module',
     # misc
     'ADR': 'Architecture Decision Records repository',
     'classic-rocket': 'Classic-rocket theme',
@@ -177,7 +180,7 @@ PROJECTS = {
     'phpstan-prestashop': 'PrestaShop PHPStan extension',
     'contextual-help-api': 'Contextual Help API',
     'psssst': 'Module analyzer',
-    'theme-refacto': 'New 8.0.0 Front-office theme',
+    'theme-refacto': 'New Front-office theme',
 }
 
 ##
