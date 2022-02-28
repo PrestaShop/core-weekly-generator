@@ -131,6 +131,7 @@ PROJECTS = {
     'ps_themecusto': 'Theme customization module',
     'ps_wirepayment': 'Wire payment module',
     'pscleaner': 'PrestaShop Cleaner module',
+    'ps_supplierlist': 'Suppliers list module',
     'psgdpr': 'GDPR module',
     'sekeywords': 'Search engine keywords statistics module',
     'statsbestcategories': 'Best categories statistics module',
