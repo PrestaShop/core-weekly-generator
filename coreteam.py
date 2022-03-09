@@ -181,7 +181,8 @@ PROJECTS = {
     'phpstan-prestashop': 'PrestaShop PHPStan extension',
     'contextual-help-api': 'Contextual Help API',
     'psssst': 'Module analyzer',
-    'theme-refacto': 'New Front-office theme',
+    'theme-refacto': 'Hummingbird theme',
+    'ps-project-metrics': 'PrestaShop Project Metrics',
 }
 
 ##
