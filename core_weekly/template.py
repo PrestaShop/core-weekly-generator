@@ -72,10 +72,10 @@ Thank you to the contributors whose PRs haven't been merged yet! And of course, 
 
 If you want to contribute to PrestaShop with code, please read these pages first:
 
- * [Contributing code to PrestaShop](https://devdocs.prestashop.com/1.7/contribute/contribution-guidelines/)
- * [Coding standards](https://devdocs.prestashop.com/1.7/development/coding-standards/)
+ * [Contributing code to PrestaShop](https://devdocs.prestashop.com/8/contribute/contribution-guidelines/)
+ * [Coding standards](https://devdocs.prestashop.com/8/development/coding-standards/)
 
-...and if you do not know how to fix an issue but wish to report it, please read this: [How to use GitHub to report an issue](https://devdocs.prestashop.com/1.7/contribute/contribute-reporting-issues/). Thank you!
+...and if you do not know how to fix an issue but wish to report it, please read this: [How to use GitHub to report an issue](https://devdocs.prestashop.com/8/contribute/contribute-reporting-issues/). Thank you!
 
 Happy contributin' everyone!
 '''
