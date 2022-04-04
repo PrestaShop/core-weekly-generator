@@ -167,6 +167,9 @@ PROJECTS = {
     'ps_bestsellers': 'Best sellers module',
     'paymentexample': 'Payment example module',
     'ps_specials': 'Special offers module',
+    # themes
+    'hummingbird': 'Hummingbird theme',
+    'classic-theme': 'Classic theme',
     # misc
     'ADR': 'Architecture Decision Records repository',
     'classic-rocket': 'Classic-rocket theme',
@@ -181,7 +184,6 @@ PROJECTS = {
     'phpstan-prestashop': 'PrestaShop PHPStan extension',
     'contextual-help-api': 'Contextual Help API',
     'psssst': 'Module analyzer',
-    'theme-refacto': 'Hummingbird theme',
     'ps-project-metrics': 'PrestaShop Project Metrics',
 }
 
