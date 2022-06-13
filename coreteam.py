@@ -205,6 +205,7 @@ CATEGORIES_REJECT_LIST = ['ME', 'PM']
 
 CORE_BRANCHES = (
     'develop',
+    '8.0.x',
     '1.7.8.x',
     '1.7.7.x',
     '1.7.6.x',
