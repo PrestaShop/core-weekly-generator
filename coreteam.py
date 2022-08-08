@@ -185,6 +185,8 @@ PROJECTS = {
     'contextual-help-api': 'Contextual Help API',
     'psssst': 'Module analyzer',
     'ps-project-metrics': 'PrestaShop Project Metrics',
+    'ps_distributionapiclient': 'Distribution API Client',
+    'ps-monitor-module-releases': 'Module Releases Monitor'
 }
 
 ##
