@@ -177,7 +177,7 @@ PROJECTS = {
     'prestonbot': 'PrestonBot',
     'traces': 'Traces',
     'TopContributors': 'PrestaShop contributors website',
-    'open-source': 'The PrestaShop open source project',
+    'open-source': 'The PrestaShop open source project website',
     'test-scenarios': 'PrestaShop test scenarios',
     'php-ps-info': 'PrestaShop PHP Informations Tool',
     'user-documentation-landing': 'User documentation landing page',
@@ -186,7 +186,8 @@ PROJECTS = {
     'psssst': 'Module analyzer',
     'ps-project-metrics': 'PrestaShop Project Metrics',
     'ps_distributionapiclient': 'Distribution API Client',
-    'ps-monitor-module-releases': 'Module Releases Monitor'
+    'ps-monitor-module-releases': 'Module Releases Monitor',
+    'ps-org-theme': 'PrestaShop open source website theme'
 }
 
 ##
