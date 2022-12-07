@@ -1,5 +1,7 @@
 # Core Weekly report generator
 
+_This repository is archived as this tool has been replaced by a [PHP Core Monthly generator](https://github.com/PrestaShop/presthubot/blob/master/src/App/Command/GitHubMonthlyReportCommand.php)._
+
 ![Core Weekly Integration tests](https://github.com/prestashop/core-weekly-generator/workflows/Core%20Weekly%20Integration%20tests/badge.svg)
 
 Core weekly generator is a micro Python 3.6+ CLI application that is able to generate a list of merged PR
